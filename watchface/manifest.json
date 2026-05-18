@@ -1,0 +1,133 @@
+{
+  "Description": {
+    "Family": "Redmi Watch 4",
+    "DeviceList": [
+      "Redmi Watch 4"
+    ],
+    "Title": "Activamente",
+    "Author": "activamente",
+    "Version": "1.0.0",
+    "Resolution": {
+      "Width": 390,
+      "Height": 450
+    }
+  },
+  "Background": {
+    "Image": {
+      "ImageSet": {
+        "ImageCount": 1,
+        "Images": [
+          {
+            "ImageIndex": 0,
+            "Coordinates": {
+              "X": 0,
+              "Y": 0
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Time": {
+    "Hours": {
+      "Tens": {
+        "ImageSet": {
+          "ImageCount": 10,
+          "ImagesPattern": "hour_digit_{d}.png",
+          "Coordinates": {
+            "X": 55,
+            "Y": 100
+          }
+        }
+      },
+      "Units": {
+        "ImageSet": {
+          "ImageCount": 10,
+          "ImagesPattern": "hour_digit_{d}.png",
+          "Coordinates": {
+            "X": 145,
+            "Y": 100
+          }
+        }
+      }
+    },
+    "Separator": {
+      "Image": {
+        "Coordinates": {
+          "X": 184,
+          "Y": 100
+        },
+        "FileName": "separator.png"
+      }
+    },
+    "Minutes": {
+      "Tens": {
+        "ImageSet": {
+          "ImageCount": 10,
+          "ImagesPattern": "min_digit_{d}.png",
+          "Coordinates": {
+            "X": 206,
+            "Y": 100
+          }
+        }
+      },
+      "Units": {
+        "ImageSet": {
+          "ImageCount": 10,
+          "ImagesPattern": "min_digit_{d}.png",
+          "Coordinates": {
+            "X": 278,
+            "Y": 100
+          }
+        }
+      }
+    }
+  },
+  "Date": {
+    "Day": {
+      "ImageSet": {
+        "Coordinates": {
+          "X": 115,
+          "Y": 205
+        }
+      }
+    },
+    "Month": {
+      "ImageSet": {
+        "Coordinates": {
+          "X": 195,
+          "Y": 205
+        }
+      }
+    }
+  },
+  "Activity": {
+    "Steps": {
+      "Widget": {
+        "FileName": "steps_widget.png",
+        "Coordinates": {
+          "X": 14,
+          "Y": 362
+        }
+      }
+    },
+    "HeartRate": {
+      "Widget": {
+        "FileName": "heart_widget.png",
+        "Coordinates": {
+          "X": 143,
+          "Y": 362
+        }
+      }
+    },
+    "Battery": {
+      "Widget": {
+        "FileName": "battery_widget.png",
+        "Coordinates": {
+          "X": 260,
+          "Y": 362
+        }
+      }
+    }
+  }
+}
