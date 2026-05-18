@@ -6,7 +6,7 @@
     ],
     "Title": "Activamente",
     "Author": "activamente",
-    "Version": "3.0.0",
+    "Version": "4.0.0",
     "Resolution": {
       "Width": 390,
       "Height": 450
@@ -26,20 +26,20 @@
       "Tens": {
         "ImageSet": {
           "ImageCount": 10,
-          "ImagesPattern": "assets/hour_digit_{d}.png",
+          "ImagesPattern": "assets/h_digit_{d}.png",
           "Coordinates": {
-            "X": 52,
-            "Y": 58
+            "X": 68,
+            "Y": 102
           }
         }
       },
       "Units": {
         "ImageSet": {
           "ImageCount": 10,
-          "ImagesPattern": "assets/hour_digit_{d}.png",
+          "ImagesPattern": "assets/h_digit_{d}.png",
           "Coordinates": {
-            "X": 140,
-            "Y": 58
+            "X": 152,
+            "Y": 102
           }
         }
       }
@@ -48,8 +48,8 @@
       "Image": {
         "FileName": "assets/separator.png",
         "Coordinates": {
-          "X": 185,
-          "Y": 58
+          "X": 188,
+          "Y": 102
         }
       }
     },
@@ -57,20 +57,20 @@
       "Tens": {
         "ImageSet": {
           "ImageCount": 10,
-          "ImagesPattern": "assets/min_digit_{d}.png",
+          "ImagesPattern": "assets/m_digit_{d}.png",
           "Coordinates": {
             "X": 200,
-            "Y": 58
+            "Y": 102
           }
         }
       },
       "Units": {
         "ImageSet": {
           "ImageCount": 10,
-          "ImagesPattern": "assets/min_digit_{d}.png",
+          "ImagesPattern": "assets/m_digit_{d}.png",
           "Coordinates": {
-            "X": 275,
-            "Y": 58
+            "X": 272,
+            "Y": 102
           }
         }
       }
@@ -79,28 +79,27 @@
   "Date": {
     "Text": {
       "Coordinates": {
-        "X": 123,
-        "Y": 140
+        "X": 129,
+        "Y": 182
       },
       "Size": {
-        "Width": 144,
-        "Height": 24
+        "Width": 132,
+        "Height": 28
       },
       "Alignment": "Center",
-      "Color": "00C8FF",
+      "Color": "00D2FF",
       "Font": {
-        "Name": "default",
-        "Size": 16
+        "Size": 15
       }
     }
   },
   "Battery": {
-    "Widget": {
-      "FileName": "assets/battery_inline.png",
+    "InlineWidget": {
       "Coordinates": {
-        "X": 155,
-        "Y": 170
-      }
+        "X": 143,
+        "Y": 217
+      },
+      "Color": "37D773"
     }
   },
   "AnalogDialFace": {
@@ -110,12 +109,12 @@
           "FileName": "assets/hand_hour.png"
         },
         "Pivot": {
-          "X": 70,
-          "Y": 70
+          "X": 80,
+          "Y": 80
         },
         "Coordinates": {
-          "X": 125,
-          "Y": 225
+          "X": 115,
+          "Y": 150
         }
       },
       "Minutes": {
@@ -123,12 +122,12 @@
           "FileName": "assets/hand_minute.png"
         },
         "Pivot": {
-          "X": 70,
-          "Y": 70
+          "X": 80,
+          "Y": 80
         },
         "Coordinates": {
-          "X": 125,
-          "Y": 225
+          "X": 115,
+          "Y": 150
         }
       },
       "Seconds": {
@@ -136,12 +135,12 @@
           "FileName": "assets/hand_second.png"
         },
         "Pivot": {
-          "X": 70,
-          "Y": 70
+          "X": 80,
+          "Y": 80
         },
         "Coordinates": {
-          "X": 125,
-          "Y": 225
+          "X": 115,
+          "Y": 150
         }
       }
     }
@@ -151,8 +150,8 @@
       "Widget": {
         "FileName": "assets/steps_widget.png",
         "Coordinates": {
-          "X": 115,
-          "Y": 386
+          "X": 114,
+          "Y": 341
         }
       }
     }
