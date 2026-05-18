@@ -6,7 +6,7 @@
     ],
     "Title": "Activamente",
     "Author": "activamente",
-    "Version": "1.0.0",
+    "Version": "2.0.0",
     "Resolution": {
       "Width": 390,
       "Height": 450
@@ -14,118 +14,99 @@
   },
   "Background": {
     "Image": {
-      "ImageSet": {
-        "ImageCount": 1,
-        "Images": [
-          {
-            "ImageIndex": 0,
-            "Coordinates": {
-              "X": 0,
-              "Y": 0
-            }
-          }
-        ]
+      "FileName": "assets/background.png",
+      "Coordinates": {
+        "X": 0,
+        "Y": 0
       }
     }
   },
-  "Time": {
-    "Hours": {
-      "Tens": {
-        "ImageSet": {
-          "ImageCount": 10,
-          "ImagesPattern": "hour_digit_{d}.png",
-          "Coordinates": {
-            "X": 55,
-            "Y": 100
-          }
-        }
-      },
-      "Units": {
-        "ImageSet": {
-          "ImageCount": 10,
-          "ImagesPattern": "hour_digit_{d}.png",
-          "Coordinates": {
-            "X": 145,
-            "Y": 100
-          }
-        }
-      }
-    },
-    "Separator": {
-      "Image": {
-        "Coordinates": {
-          "X": 184,
-          "Y": 100
+  "AnalogDialFace": {
+    "ClockHands": {
+      "Hours": {
+        "Image": {
+          "FileName": "assets/hand_hour.png"
         },
-        "FileName": "separator.png"
-      }
-    },
-    "Minutes": {
-      "Tens": {
-        "ImageSet": {
-          "ImageCount": 10,
-          "ImagesPattern": "min_digit_{d}.png",
-          "Coordinates": {
-            "X": 206,
-            "Y": 100
-          }
+        "Pivot": {
+          "X": 90,
+          "Y": 90
+        },
+        "Coordinates": {
+          "X": 105,
+          "Y": 120
         }
       },
-      "Units": {
-        "ImageSet": {
-          "ImageCount": 10,
-          "ImagesPattern": "min_digit_{d}.png",
-          "Coordinates": {
-            "X": 278,
-            "Y": 100
-          }
+      "Minutes": {
+        "Image": {
+          "FileName": "assets/hand_minute.png"
+        },
+        "Pivot": {
+          "X": 90,
+          "Y": 90
+        },
+        "Coordinates": {
+          "X": 105,
+          "Y": 120
+        }
+      },
+      "Seconds": {
+        "Image": {
+          "FileName": "assets/hand_second.png"
+        },
+        "Pivot": {
+          "X": 90,
+          "Y": 90
+        },
+        "Coordinates": {
+          "X": 105,
+          "Y": 120
         }
       }
     }
   },
   "Date": {
-    "Day": {
-      "ImageSet": {
-        "Coordinates": {
-          "X": 115,
-          "Y": 205
-        }
-      }
-    },
-    "Month": {
-      "ImageSet": {
-        "Coordinates": {
-          "X": 195,
-          "Y": 205
-        }
+    "Text": {
+      "Coordinates": {
+        "X": 125,
+        "Y": 240
+      },
+      "Size": {
+        "Width": 140,
+        "Height": 24
+      },
+      "Alignment": "Center",
+      "Color": "00C8FF",
+      "Font": {
+        "Name": "default",
+        "Size": 16
       }
     }
   },
   "Activity": {
     "Steps": {
       "Widget": {
-        "FileName": "steps_widget.png",
+        "FileName": "assets/steps_widget.png",
         "Coordinates": {
-          "X": 14,
-          "Y": 362
+          "X": 18,
+          "Y": 371
         }
       }
     },
     "HeartRate": {
       "Widget": {
-        "FileName": "heart_widget.png",
+        "FileName": "assets/heart_widget.png",
         "Coordinates": {
-          "X": 143,
-          "Y": 362
+          "X": 142,
+          "Y": 371
         }
       }
     },
     "Battery": {
       "Widget": {
-        "FileName": "battery_widget.png",
+        "FileName": "assets/battery_widget.png",
         "Coordinates": {
-          "X": 260,
-          "Y": 362
+          "X": 266,
+          "Y": 371
         }
       }
     }
