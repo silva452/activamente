@@ -905,5 +905,20 @@ textarea.dashboard-input:focus {
     .breathing-text { font-size: 1rem; letter-spacing: 3px; }
     .page-home .sanctuary-title-block.home-specialists-intro h2 { font-size: clamp(2rem, 7vw, 3.5rem) !important; }
     .home-cta-pro-title { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+
+    /* Register / Login / Testimonials - override inline styles mobile */
+    .container > .reveal[style*="padding: 8rem"] { padding: 2rem !important; border-radius: 30px !important; }
+    .container[style*="padding: 18rem"] { padding-top: 10rem !important; padding-bottom: 4rem !important; }
+    .container[style*="padding: 20rem"] { padding-top: 12rem !important; padding-bottom: 4rem !important; }
+    [style*="font-size: 4rem"] { font-size: 2.2rem !important; }
+    [style*="font-size: 1.3rem"] { font-size: 1rem !important; padding: 1rem !important; }
+    [style*="font-size: 1.4rem"] { font-size: 1rem !important; padding: 1.2rem !important; }
+    #app-root .container .reveal > div[style*="border-radius:50px"] { flex-direction: column !important; border-radius: 20px !important; }
+    #app-root .container .reveal > div[style*="display:flex; background:#f5f5f5"] { flex-direction: column !important; }
+    #app-root .container .reveal > div > button[style*="padding:1.5rem"] { font-size: 0.85rem !important; padding: 0.8rem !important; }
+    #app-root p[style*="margin-top:4rem"] { margin-top: 2rem !important; }
+    #app-root p[style*="font-size:1.2rem"] { font-size: 0.9rem !important; }
+    .star-rating-input label { font-size: 2rem !important; }
+    #app-root textarea[style*="font-size: 1.3rem"] { font-size: 0.9rem !important; padding: 1rem !important; height: 120px !important; }
 }
 
