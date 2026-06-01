@@ -10,6 +10,10 @@ async function apiFetch(url, options = {}) {
     const headers = { ...(options.headers || {}) };
     const token = localStorage.getItem('activamente_token');
     if (token) headers['Authorization'] = 'Bearer ' + token;
+    // Auto-set Content-Type for JSON POST/PUT bodies
+    if (options.body && typeof options.body === 'string' && !headers['Content-Type']) {
+        headers['Content-Type'] = 'application/json';
+    }
     const res = await fetch(url, { ...options, headers });
     return res;
 }
