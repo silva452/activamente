@@ -1,6 +1,6 @@
 // /api/auth - Authentication endpoints (login, register, status, logout)
 const { query } = require('../lib/db');
-const { signToken, hashPassword, comparePassword, setCors, handleOptions, parseBody } = require('../lib/auth');
+const { signToken, hashPassword, comparePassword, setCors, handleOptions, parseBody, getUserFromRequest } = require('../lib/auth');
 
 module.exports = async (req, res) => {
   setCors(res);
