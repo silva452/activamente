@@ -1,0 +1,23 @@
+ACTIVAMENTE — Incluir un volcado real de MySQL en el ZIP
+==========================================================
+
+En este paquete viene el código del sitio y, si lo generaste, el archivo SQL con tus datos.
+
+1) Volcado automático (recomendado)
+   - Arranca MySQL y Apache en Laragon.
+   - Abre en el navegador (ajusta puerto/carpeta si hace falta):
+     http://localhost/activamente/export_dump.php?key=activamente2026
+   - Se descargará un archivo activamente_backup_FECHA.sql con esquema y datos.
+   - Guárdalo junto al proyecto o vuelve a empaquetar todo en un ZIP.
+
+2) Línea de comandos (si tienes php.exe)
+   - Desde esta carpeta:
+     php export_dump.php > activamente_datos.sql
+
+3) phpMyAdmin
+   - Base de datos: activamente → Exportar → SQL.
+
+4) database.sql (en la raíz)
+   - Es un esquema de ejemplo antiguo; no sustituye a tu base real con citas y usuarios.
+
+Seguridad: borra o protege export_dump.php en el servidor público (cambia EXPORT_SECRET o elimina el archivo).

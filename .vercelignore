@@ -1,0 +1,15 @@
+# PHP backend files (replaced by Node.js API)
+*.php
+*.sql
+Dockerfile
+.dockerignore
+docker-compose.yml
+start.bat
+start.sh
+
+# Docs
+README_DOCKER.md
+INSTRUCCIONES_RAPIDAS.txt
+RESUMEN_DOCKER.md
+ESTADO_ACTUAL.txt
+LEEME_BACKUP_BASE_DE_DATOS.txt

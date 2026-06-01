@@ -1,0 +1,10 @@
+# Archivos y directorios a ignorar en Docker
+.git
+.gitignore
+README.md
+docker-compose.yml
+Dockerfile
+.dockerignore
+*.md
+.env
+node_modules

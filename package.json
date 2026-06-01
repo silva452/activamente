@@ -1,0 +1,15 @@
+{
+  "name": "activamente",
+  "version": "1.0.0",
+  "description": "Activamente - Salud mental y bienestar",
+  "scripts": {
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "pg": "^8.13.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cloudinary": "^2.5.1",
+    "busboy": "^1.6.0"
+  }
+}

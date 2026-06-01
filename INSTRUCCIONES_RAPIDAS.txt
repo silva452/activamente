@@ -1,0 +1,57 @@
+═══════════════════════════════════════════════════════════════
+  ACTIVAMENTE - APLICACIÓN CORRIENDO EN DOCKER
+═══════════════════════════════════════════════════════════════
+
+✅ ¡TU APLICACIÓN YA ESTÁ FUNCIONANDO!
+
+🌐 Accede desde tu navegador:
+   http://localhost:8082
+
+📊 Base de datos MySQL:
+   Host: localhost
+   Puerto: 3306
+   Base de datos: activamente
+   Usuario: activamente_user
+   Contraseña: activamente_pass
+
+═══════════════════════════════════════════════════════════════
+  COMANDOS ÚTILES
+═══════════════════════════════════════════════════════════════
+
+▶ Ver estado de los contenedores:
+  docker-compose ps
+
+▶ Ver logs en tiempo real:
+  docker-compose logs -f
+
+▶ Detener la aplicación:
+  docker-compose down
+
+▶ Reiniciar la aplicación:
+  docker-compose restart
+
+▶ Iniciar la aplicación:
+  docker-compose up -d
+
+▶ Reconstruir y reiniciar:
+  docker-compose up -d --build
+
+═══════════════════════════════════════════════════════════════
+  ARCHIVOS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+📄 docker-compose.yml  - Configuración de servicios
+📄 Dockerfile          - Imagen del servidor web
+📄 README_DOCKER.md    - Documentación completa
+📄 start.bat           - Script de inicio para Windows
+
+═══════════════════════════════════════════════════════════════
+  NOTAS
+═══════════════════════════════════════════════════════════════
+
+• Los archivos subidos se guardan en ./uploads
+• La base de datos persiste en un volumen Docker
+• Los cambios en archivos PHP se reflejan inmediatamente
+• Para cambios en Dockerfile usa: docker-compose up -d --build
+
+═══════════════════════════════════════════════════════════════

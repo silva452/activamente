@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Servicio de base de datos MySQL
+  db:
+    image: mysql:8.0
+    container_name: activamente_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: activamente
+      MYSQL_USER: activamente_user
+      MYSQL_PASSWORD: activamente_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+    networks:
+      - activamente_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Servicio de aplicación PHP/Apache
+  web:
+    build: .
+    container_name: activamente_web
+    restart: always
+    ports:
+      - "8082:80"
+    environment:
+      ACTIVAMENTE_DB_HOST: db
+      ACTIVAMENTE_DB_NAME: activamente
+      ACTIVAMENTE_DB_USER: activamente_user
+      ACTIVAMENTE_DB_PASS: activamente_pass
+    volumes:
+      - ./uploads:/var/www/html/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - activamente_network
+
+volumes:
+  db_data:
+
+networks:
+  activamente_network:
+    driver: bridge

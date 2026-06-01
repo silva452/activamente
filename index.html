@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activamente · Salud mental y bienestar</title>
+    <!-- Sanctuary Luxury Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Design System -->
+    <link rel="stylesheet" href="style.css?v=22">
+    <link rel="stylesheet" href="index.css?v=32">
+    <style>
+        #app-root {
+            min-height: 100vh;
+        }
+
+        .lux-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #5d1021, #1a0509);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            flex-direction: column;
+            gap: 40px;
+            color: white;
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lux-loading .logo-container {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+        }
+
+        .lux-loading.loaded .logo-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .lux-spinner {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(194, 154, 91, 0.1);
+            border-top-color: #c29a5b;
+            border-radius: 50%;
+            animation: spin 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(194, 154, 91, 0.2);
+            --shadow-luxe: 0 30px 60px -12px rgba(93, 16, 33, 0.12), 0 18px 36px -18px rgba(0, 0, 0, 0.1);
+            --radius-lg: 3rem;
+            --radius-md: 1.5rem;
+            --anim-breath: 8s ease-in-out infinite alternate;
+        }
+
+        .logo-lux {
+    height: auto;
+    width: auto;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* For light backgrounds (Navbar) */
+.logo-on-light {
+    mix-blend-mode: multiply;
+    filter: contrast(1.1) brightness(1.05);
+}
+
+/* For dark backgrounds (Loading Screen, Footer) */
+.logo-on-dark {
+    filter: brightness(0) invert(1); /* Makes the logo white on a black background */
+    mix-blend-mode: screen; /* Makes the black background transparent */
+}
+
+/* For maroon backgrounds (if needed) */
+.logo-on-maroon {
+    filter: brightness(0) invert(1);
+    mix-blend-mode: screen;
+    opacity: 0.8;
+}
+        .nav-logo-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading" class="lux-loading">
+        <div class="logo-container">
+            <div style="background: white; display: inline-block; padding: 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+                <img src="assets/logo_lux.jfif" alt="Activamente" class="logo-lux" style="height: 100px; display: block;">
+            </div>
+            <div class="lux-spinner" style="margin: 0 auto 2rem;"></div>
+            <div style="letter-spacing: 8px; font-size: 0.8rem; opacity: 0.7; font-weight: 300; text-transform: uppercase;">
+                Preparando mi espacio
+            </div>
+        </div>
+    </div>
+
+    <nav id="nav-bar" class="nav-bar nav-bar--at-top">
+        <div class="container nav-content">
+            <a href="javascript:void(0)" onclick="Router.navigateTo('home')" class="nav-logo-box" id="nav-logo-box">
+                <img id="nav-logo-img" src="assets/logo_lux.jfif" alt="Activamente" class="logo-lux" style="height: 52px; display: block;">
+            </a>
+            <div id="nav-links" class="nav-links">
+                <a href="javascript:void(0)" onclick="Router.navigateTo('home')">Inicio</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('forum')">El Espacio</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('about')">Nosotros</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('contact')">Contacto</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('login')">Ingresar</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('register')" class="btn-gold" style="padding:1rem 3rem;">Unirme</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app-root">
+        <!-- SPA injection point -->
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer-grid">
+            <div>
+                <div class="logo" style="margin-bottom: 3rem;">
+                    <div style="background: white; display: inline-block; padding: 1.5rem; border-radius: 15px;">
+                        <img src="assets/logo_lux.jfif" alt="Activamente" class="logo-lux" style="height: 60px; display: block;">
+                    </div>
+                </div>
+                <p style="opacity: 0.5; font-size: 1.1rem; max-width: 400px; font-weight: 300; line-height: 2;">Un
+                    espacio de trascendencia clínica y humana, diseñado para guiarte en tu camino hacia el equilibrio y
+                    la plenitud.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--accent); letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 3rem;">
+                    NAVEGACIÓN</h4>
+                <ul style="list-style: none; opacity: 0.7; line-height: 3; font-size: 0.9rem;">
+                    <li>Inicio</li>
+                    <li>Especialistas de Élite</li>
+                    <li>El Espacio del Pensamiento</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--accent); letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 3rem;">CONTACTO
+                    EXCLUSIVO</h4>
+                <p style="opacity: 0.7; font-size: 1.1rem; line-height: 2;">Atención personalizada para profesionales y
+                    pacientes.<br><br>
+                    <a href="mailto:activamentecorreo2026@gmail.com" style="color: inherit; border-bottom: 1px solid var(--accent); text-decoration: none;">activamentecorreo2026@gmail.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="container site-footer-bottom">
+            &copy; 2026 ACTIVAMENTE. CUIDADO DE ÉLITE PARA MENTES EXTRAORDINARIAS.
+            <span>MÉXICO</span>
+        </div>
+    </footer>
+
+    <script src="app.js?v=51"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.classList.add('loaded');
+                setTimeout(() => {
+                    loading.style.opacity = '0';
+                    loading.style.pointerEvents = 'none';
+                    setTimeout(() => loading.remove(), 1200);
+                }, 2000);
+            }
+        });
+
+        function syncNavState() {
+            const nav = document.getElementById('nav-bar');
+            const logoBox = document.getElementById('nav-logo-box');
+            const logoImg = document.getElementById('nav-logo-img');
+            if (!nav) return;
+            const solid = window.scrollY > 72;
+            nav.classList.toggle('nav-bar--scrolled', solid);
+            nav.classList.toggle('nav-bar--at-top', !solid);
+            nav.style.padding = solid ? '0.75rem 0' : '1.25rem 0';
+            if (logoBox) logoBox.classList.toggle('nav-logo-box--scrolled', solid);
+            if (logoImg) {
+                logoImg.classList.toggle('logo-on-light', solid);
+                logoImg.classList.toggle('logo-on-hero', !solid);
+            }
+        }
+        window.addEventListener('scroll', syncNavState, { passive: true });
+        syncNavState();
+        window.syncNavBar = syncNavState;
+    </script>
+</body>
+
+</html>
