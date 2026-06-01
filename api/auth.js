@@ -114,6 +114,18 @@ module.exports = async (req, res) => {
       });
     }
 
+    else if (action === 'change_password') {
+      const user = getUserFromRequest(req);
+      if (!user) return res.status(401).json({ error: 'No autorizado.' });
+      const { new_password } = await parseBody(req);
+      if (!new_password || new_password.length < 6) {
+        return res.status(400).json({ error: 'La nueva contraseña debe tener al menos 6 caracteres.' });
+      }
+      const hashed = await hashPassword(new_password);
+      await query('UPDATE users SET password = $1 WHERE id = $2', [hashed, user.user_id]);
+      return res.json({ success: true, message: 'Contraseña actualizada correctamente.' });
+    }
+
     else if (action === 'logout') {
       // With JWT, logout is handled client-side by removing the token
       return res.json({ success: true });
