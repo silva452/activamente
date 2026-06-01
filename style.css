@@ -802,3 +802,108 @@ textarea.dashboard-input:focus {
 
 /* Letterboxing refinement - REMOVED per user request */
 
+/* ============================================
+   RESPONSIVE COMPLETO — Activamente Mobile
+   ============================================ */
+
+/* Tablets pequeñas y celulares grandes */
+@media (max-width: 900px) {
+    .container { padding: 0 1.5rem; }
+    .nav-links { gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a { font-size: 0.65rem; letter-spacing: 1px; }
+    .nav-links .btn-gold { padding: 0.5rem 1rem !important; font-size: 0.6rem !important; }
+    .hero-content { padding: 0 1rem; }
+    .hero-sanctuary h1.hero-headline-index { font-size: clamp(1.8rem, 7vw, 2.8rem) !important; }
+    .hero-subhead-index { font-size: 0.95rem !important; }
+    .reveal-soft { font-size: 1rem !important; }
+}
+
+/* Celulares (< 600px) */
+@media (max-width: 600px) {
+    .container { padding: 0 1rem; }
+    .hero-sanctuary h1.hero-headline-index { font-size: clamp(1.5rem, 6vw, 2.2rem) !important; }
+    .hero-subhead-index { font-size: 0.85rem !important; }
+    .hero-topic-hint { font-size: 0.8rem; margin: 1.5rem auto 0.5rem; }
+    .hero-topic-picker { padding: 0.5rem; gap: 0.5rem; }
+    .stat-item h4 { font-size: 2.5rem !important; }
+    .stat-item p { font-size: 0.7rem; letter-spacing: 1px; }
+    .masterpiece-info h2 { font-size: clamp(2rem, 7vw, 3rem) !important; letter-spacing: 0; }
+    .masterpiece-info .specialty { font-size: 1.2rem; margin-bottom: 2rem; }
+    .masterpiece-info .bio { font-size: 0.9rem; line-height: 1.7; margin-bottom: 3rem; }
+    .masterpiece-footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    .masterpiece-price { font-size: 2rem; }
+    .masterpiece-price span { font-size: 0.8rem; }
+    .masterpiece-info { padding: 2rem 1.2rem !important; }
+    .masterpiece-img-box { height: 50vw; min-height: 220px; }
+    .dashboard-header h1 { font-size: 2.5rem !important; }
+    .dashboard-form { padding: 2rem !important; border-radius: 20px !important; }
+    .dashboard-sidebar { padding: 3rem 1.5rem !important; border-radius: 30px !important; }
+    .dashboard-input { font-size: 1rem !important; padding: 1.2rem 0 !important; }
+    .form-group { margin-bottom: 2rem !important; }
+    .form-group label { font-size: 0.6rem; letter-spacing: 2px; }
+    /* Profile */
+    .profile-lux-header { padding: 10rem 0 4rem !important; }
+    .profile-lux-header h1 { font-size: 2.5rem !important; }
+    .profile-lux-header .container > div { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    .profile-lux-header .container > div > div:first-child { height: 300px !important; }
+    .profile-lux-header .container > div > div:first-child img { border-radius: 30px !important; }
+    /* Admin panel */
+    .admin-tab { padding: 0.8rem 1.2rem; font-size: 0.7rem; }
+    .admin-card-luxe { padding: 1.5rem; border-radius: 20px; }
+    .admin-table-luxe { font-size: 0.7rem; }
+    .admin-table-luxe td { padding: 0.8rem; }
+    .admin-action-bundle { flex-direction: column; gap: 0.3rem; }
+    .admin-tab-group { flex-wrap: wrap; }
+    /* Forum */
+    .forum-layout { grid-template-columns: 1fr; }
+    .forum-aside { position: static; }
+    .forum-post__title { font-size: 1.2rem; }
+    .forum-post { padding: 1rem; }
+    .forum-compose { padding: 1.5rem; }
+    /* About page */
+    .about-hero__title { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+    .about-mission-copy__text { font-size: 0.9rem; padding-left: 1rem; }
+    .about-values-grid { grid-template-columns: 1fr; }
+    .about-cta__title { font-size: clamp(1.5rem, 6vw, 2rem); }
+    /* Contact */
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-form-card { padding: 1.5rem; }
+    .contact-row-2 { grid-template-columns: 1fr; }
+    .contact-sidebar { position: static; }
+    /* Navbar adjustments */
+    .nav-content { flex-wrap: wrap; }
+    .nav-links { gap: 0.3rem 0.5rem; margin-top: 0.3rem; }
+    .nav-links a { font-size: 0.55rem; letter-spacing: 0.5px; }
+    /* Stats */
+    .stats-sanctuary { padding: 4rem 0; }
+    .dashboard-container { padding: 8rem 0 4rem !important; }
+    .dashboard-header { margin-bottom: 3rem !important; }
+    /* Misc */
+    .testimonial-bubble { padding: 2rem !important; border-radius: 30px !important; }
+    .testimonial-bubble::after { font-size: 4rem; top: 1rem; right: 2rem; }
+    .news-card h4 { font-size: 1.2rem; }
+    .sanctuary-title-block { padding: 8rem 0 4rem; }
+    .sanctuary-title-block h2 { font-size: clamp(2rem, 8vw, 4rem) !important; letter-spacing: -1px; }
+    .home-camino-title { font-size: clamp(1.5rem, 5vw, 2rem); }
+    .home-camino-text { font-size: 0.9rem; }
+    .home-testimonials-title { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+    .site-footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .site-footer-bottom { flex-direction: column; text-align: center; }
+    .floating-testimonial { display: none; }
+    .dashboard-avatar-edit { width: 120px; height: 120px; }
+    .admin-table-luxe { display: block; overflow-x: auto; }
+    #filter-bar { top: 0; position: relative; }
+    .filter-bar-inner { flex-direction: column; gap: 0; }
+    .filter-group { flex: 1 1 100% !important; padding: 0.75rem 1rem; }
+    .filter-actions { width: 100%; }
+    .filter-btn-search { flex: 1; }
+    .btn-gold { padding: 0.8rem 2rem; font-size: 0.8rem; }
+    .hero-topic-select { font-size: 0.75rem; padding: 0.7rem 2rem 0.7rem 0.8rem; }
+    .audio-sanctuary { flex-wrap: wrap; padding: 1rem; }
+    .zen-widget { padding: 2rem; }
+    .mandala-container { width: 200px; height: 200px; margin: 2rem auto; }
+    .breathing-text { font-size: 1rem; letter-spacing: 3px; }
+    .page-home .sanctuary-title-block.home-specialists-intro h2 { font-size: clamp(2rem, 7vw, 3.5rem) !important; }
+    .home-cta-pro-title { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+}
+
