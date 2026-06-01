@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
       const priceMax = req.query.price_max || '';
       const specialty = req.query.specialty || '';
 
-      let sql = `SELECT p.*, u.email FROM psychologists p JOIN users u ON p.user_id = u.id WHERE p.is_active = 1`;
+      let sql = `SELECT p.*, u.email FROM psychologists p JOIN users u ON p.user_id = u.id WHERE p.is_active = true`;
       const params = [];
       let idx = 1;
 
@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
     // ===================== FORUM =====================
     else if (action === 'get_forum') {
       const result = await query(
-        'SELECT fp.*, u.role as author_role FROM forum_posts fp LEFT JOIN users u ON fp.author_id = u.id WHERE fp.is_active = 1 ORDER BY fp.timestamp DESC'
+        'SELECT fp.*, u.role as author_role FROM forum_posts fp LEFT JOIN users u ON fp.author_id = u.id WHERE fp.is_active = true ORDER BY fp.timestamp DESC'
       );
       return send(result.rows);
     }
@@ -242,7 +242,7 @@ module.exports = async (req, res) => {
     // ===================== SITE TESTIMONIALS =====================
     else if (action === 'get_site_testimonials') {
       const result = await query(
-        'SELECT * FROM site_testimonials WHERE is_active = 1 ORDER BY created_at DESC'
+        'SELECT * FROM site_testimonials WHERE is_active = true ORDER BY created_at DESC'
       );
       return send(result.rows);
     }
