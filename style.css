@@ -800,17 +800,5 @@ textarea.dashboard-input:focus {
     animation: wa-pulse 2s infinite;
 }
 
-/* Letterboxing refinement */
-body::before, body::after {
-    content: '';
-    position: fixed;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: #000;
-    z-index: 9999;
-    pointer-events: none;
-}
-body::before { top: 0; }
-body::after { bottom: 0; }
+/* Letterboxing refinement - REMOVED per user request */
 
