@@ -847,6 +847,11 @@ textarea.dashboard-input:focus {
     .profile-lux-header .container > div { grid-template-columns: 1fr !important; gap: 2rem !important; }
     .profile-lux-header .container > div > div:first-child { height: 300px !important; }
     .profile-lux-header .container > div > div:first-child img { border-radius: 30px !important; }
+    /* Profile bio columns stack */
+    #app-root .container[style*="padding: clamp(8rem"] { grid-template-columns: 1fr !important; gap: clamp(3rem, 5vw, 6rem) !important; }
+    #app-root .container[style*="padding: clamp(8rem"] > div:last-child { position: static !important; }
+    /* Booking sticky card mobile */
+    #app-root .container[style*="padding: clamp(8rem"] [style*="position: sticky"] { position: static !important; }
     /* Admin panel */
     .admin-tab { padding: 0.8rem 1.2rem; font-size: 0.7rem; }
     .admin-card-luxe { padding: 1.5rem; border-radius: 20px; }

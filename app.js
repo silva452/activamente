@@ -405,7 +405,7 @@ const UI = {
         document.getElementById('app-root').innerHTML = `
             <div class="profile-lux-header">
                 <div class="container reveal">
-                    <div style="display: grid; grid-template-columns: 400px 1fr; gap: 8rem; align-items: center;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: clamp(2rem, 5vw, 8rem); align-items: center;">
                         <div style="height: 600px; border-radius: 50px; overflow: hidden; box-shadow: var(--shadow-luxe);">
                             <img src="${p.image || 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=600'}" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
@@ -440,7 +440,7 @@ const UI = {
                 </div>
             </div>
             
-            <div class="container" style="padding: 15rem 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: 12rem;">
+            <div class="container" style="padding: clamp(8rem, 10vw, 15rem) 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(4rem, 6vw, 12rem);">
                 <div class="reveal">
                     <h2 style="font-size: 4rem; margin-bottom: 4rem;">Sobre el Mentor</h2>
                     <p style="font-size: 1.5rem; color: var(--text-muted); line-height: 2.4; margin-bottom: 6rem; font-weight: 300;">${p.bio}</p>
@@ -694,7 +694,7 @@ const UI = {
                     <h1>Gestiona tu <span>Presencia</span></h1>
                 </div>
                 
-                <div class="dashboard-grid" style="grid-template-columns: 350px 1fr 400px;">
+                <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));">
                     <aside class="dashboard-sidebar reveal">
                         <div class="dashboard-avatar-edit" onclick="document.getElementById('d-file').click()" style="cursor: pointer; position: relative;">
                             <img id="avatar-preview" src="${p.image || 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=300'}">
@@ -1966,15 +1966,15 @@ window.Router = {
 
     renderLogin() {
         document.getElementById('app-root').innerHTML = `
-            <div class="container" style="padding: 20rem 1rem; display: flex; justify-content: center;">
-                <div class="reveal" style="background: white; padding: 8rem; border-radius: 80px; box-shadow: var(--shadow-luxe); max-width: 650px; width:100%; text-align: center; border: 1px solid #f0f0f0;">
+            <div class="container" style="padding: clamp(8rem, 20vw, 20rem) 1rem; display: flex; justify-content: center;">
+                <div class="reveal page-auth-card" style="background: white; padding: clamp(2rem, 5vw, 8rem); border-radius: clamp(30px, 5vw, 80px); box-shadow: var(--shadow-luxe); max-width: 650px; width:100%; text-align: center; border: 1px solid #f0f0f0;">
                     <span class="tag">ACCESO RESTRINGIDO</span>
-                    <h2 style="font-size: 4rem; margin: 2rem 0;">Bienvenido de vuelta</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 5rem; font-size: 1.25rem; font-weight: 300;">Pacientes, especialistas y equipo interno: usa el correo con el que te registraste.</p>
-                    <input type="email" id="l-email" placeholder="Correo electrónico" style="width:100%; padding: 2rem; border-radius: 30px; border: 1px solid var(--border); margin-bottom: 2rem; outline: none; font-size: 1.3rem; background: #fafafa;">
-                    <input type="password" id="l-pass" placeholder="Contraseña" style="width:100%; padding: 2rem; border-radius: 30px; border: 1px solid var(--border); margin-bottom: 4rem; outline: none; font-size: 1.3rem; background: #fafafa;">
-                    <button class="btn-gold" style="width: 100%; padding: 2rem; font-size: 1.4rem;" onclick="Router.handleLogin()">Entrar al Sistema</button>
-                    <p style="margin-top: 4rem;">¿Aún no tienes cuenta? <a href="#" onclick="Router.navigateTo('register')" style="color: var(--primary); font-weight: 600;">Regístrate como paciente o especialista</a></p>
+                    <h2 style="font-size: clamp(2rem, 6vw, 4rem); margin: clamp(1rem, 2vw, 2rem) 0;">Bienvenido de vuelta</h2>
+                    <p style="color: var(--text-muted); margin-bottom: clamp(2rem, 4vw, 5rem); font-size: clamp(0.9rem, 2vw, 1.25rem); font-weight: 300;">Pacientes, especialistas y equipo interno: usa el correo con el que te registraste.</p>
+                    <input type="email" id="l-email" placeholder="Correo electrónico" style="width:100%; padding: clamp(1rem, 2vw, 2rem); border-radius: clamp(15px, 2vw, 30px); border: 1px solid var(--border); margin-bottom: 2rem; outline: none; font-size: clamp(0.95rem, 1.8vw, 1.3rem); background: #fafafa;">
+                    <input type="password" id="l-pass" placeholder="Contraseña" style="width:100%; padding: clamp(1rem, 2vw, 2rem); border-radius: clamp(15px, 2vw, 30px); border: 1px solid var(--border); margin-bottom: clamp(2rem, 3vw, 4rem); outline: none; font-size: clamp(0.95rem, 1.8vw, 1.3rem); background: #fafafa;">
+                    <button class="btn-gold" style="width: 100%; padding: clamp(1rem, 2vw, 2rem); font-size: clamp(0.95rem, 1.8vw, 1.4rem);" onclick="Router.handleLogin()">Entrar al Sistema</button>
+                    <p style="margin-top: clamp(2rem, 3vw, 4rem);">¿Aún no tienes cuenta? <a href="#" onclick="Router.navigateTo('register')" style="color: var(--primary); font-weight: 600;">Regístrate como paciente o especialista</a></p>
                 </div>
             </div>`;
         UI.initObserver();
@@ -1993,32 +1993,32 @@ window.Router = {
 
     renderRegister() {
         document.getElementById('app-root').innerHTML = `
-            <div class="container" style="padding: 18rem 1rem; display: flex; justify-content: center;">
-                <div class="reveal" style="background: white; padding: 8rem; border-radius: 80px; box-shadow: var(--shadow-luxe); max-width: 700px; width:100%; text-align: center; border: 1px solid #f0f0f0;">
+            <div class="container" style="padding: clamp(8rem, 20vw, 18rem) 1rem; display: flex; justify-content: center;">
+                <div class="reveal page-auth-card" style="background: white; padding: clamp(2rem, 5vw, 8rem); border-radius: clamp(30px, 5vw, 80px); box-shadow: var(--shadow-luxe); max-width: 700px; width:100%; text-align: center; border: 1px solid #f0f0f0;">
                     <span class="tag">ACCESO AL SANTUARIO</span>
-                    <h2 style="font-size: 4rem; margin: 2rem 0;">Únete</h2>
+                    <h2 style="font-size: clamp(2rem, 6vw, 4rem); margin: clamp(1rem, 2vw, 2rem) 0;">Únete</h2>
 
-                    <div style="display:flex; background:#f5f5f5; border-radius:50px; padding:0.5rem; margin-bottom:4rem; gap:0.5rem;">
-                        <button type="button" class="reg-tab reg-tab--active" data-role="patient" onclick="UI.switchRegTab(this)" style="flex:1;padding:1.5rem;border-radius:40px;border:none;font-weight:700;font-size:1.1rem;cursor:pointer;background:white;color:var(--primary);box-shadow:0 5px 15px rgba(0,0,0,0.08);transition:all 0.3s;font-family:inherit;">
+                    <div class="reg-tabs-mobile" style="display:flex; background:#f5f5f5; border-radius:clamp(20px, 3vw, 50px); padding:0.5rem; margin-bottom:clamp(2rem, 3vw, 4rem); gap:0.5rem; flex-wrap:wrap;">
+                        <button type="button" class="reg-tab reg-tab--active" data-role="patient" onclick="UI.switchRegTab(this)" style="flex:1;padding:clamp(0.8rem, 1.5vw, 1.5rem);border-radius:clamp(15px, 2.5vw, 40px);border:none;font-weight:700;font-size:clamp(0.8rem, 1.5vw, 1.1rem);cursor:pointer;background:white;color:var(--primary);box-shadow:0 5px 15px rgba(0,0,0,0.08);transition:all 0.3s;font-family:inherit;">
                             Soy Paciente
                         </button>
-                        <button type="button" class="reg-tab" data-role="psychologist" onclick="UI.switchRegTab(this)" style="flex:1;padding:1.5rem;border-radius:40px;border:none;font-weight:700;font-size:1.1rem;cursor:pointer;background:transparent;color:var(--text-muted);transition:all 0.3s;font-family:inherit;">
+                        <button type="button" class="reg-tab" data-role="psychologist" onclick="UI.switchRegTab(this)" style="flex:1;padding:clamp(0.8rem, 1.5vw, 1.5rem);border-radius:clamp(15px, 2.5vw, 40px);border:none;font-weight:700;font-size:clamp(0.8rem, 1.5vw, 1.1rem);cursor:pointer;background:transparent;color:var(--text-muted);transition:all 0.3s;font-family:inherit;">
                             Soy Especialista
                         </button>
                     </div>
 
-                    <div id="reg-patient-desc" style="margin-bottom:3rem;">
-                        <p style="color:var(--text-muted);font-size:1.2rem;font-weight:300;">Cuenta de <strong>paciente</strong>: citas, reseñas y tu portal. El rol <strong>superadmin</strong> es interno y no se registra aquí.</p>
+                    <div id="reg-patient-desc" style="margin-bottom:clamp(1.5rem, 2.5vw, 3rem);">
+                        <p style="color:var(--text-muted);font-size:clamp(0.85rem, 1.5vw, 1.2rem);font-weight:300;">Cuenta de <strong>paciente</strong>: citas, reseñas y tu portal. El rol <strong>superadmin</strong> es interno y no se registra aquí.</p>
                     </div>
-                    <div id="reg-psy-desc" style="margin-bottom:3rem;display:none;">
-                        <p style="color:var(--text-muted);font-size:1.2rem;font-weight:300;">Cuenta de <strong>especialista</strong>: perfil público, citas, foro y bóveda de pacientes.</p>
+                    <div id="reg-psy-desc" style="margin-bottom:clamp(1.5rem, 2.5vw, 3rem);display:none;">
+                        <p style="color:var(--text-muted);font-size:clamp(0.85rem, 1.5vw, 1.2rem);font-weight:300;">Cuenta de <strong>especialista</strong>: perfil público, citas, foro y bóveda de pacientes.</p>
                     </div>
 
-                    <input type="text" id="r-name" placeholder="Nombre completo" style="width:100%;padding:2rem;border-radius:30px;border:1px solid var(--border);margin-bottom:2rem;outline:none;font-size:1.3rem;background:#fafafa;font-family:inherit;">
-                    <input type="email" id="r-email" placeholder="Correo electrónico" style="width:100%;padding:2rem;border-radius:30px;border:1px solid var(--border);margin-bottom:2rem;outline:none;font-size:1.3rem;background:#fafafa;font-family:inherit;">
-                    <input type="password" id="r-pass" placeholder="Contraseña" style="width:100%;padding:2rem;border-radius:30px;border:1px solid var(--border);margin-bottom:4rem;outline:none;font-size:1.3rem;background:#fafafa;font-family:inherit;">
-                    <button class="btn-gold" style="width:100%;padding:2rem;font-size:1.4rem;" onclick="Router.handleRegister()">Crear Cuenta</button>
-                    <p style="margin-top:4rem;color:var(--text-muted);">¿Ya tienes cuenta? <a href="#" onclick="Router.navigateTo('login')" style="color:var(--primary);font-weight:600;">Inicia sesión</a></p>
+                    <input type="text" id="r-name" placeholder="Nombre completo" style="width:100%;padding:clamp(1rem, 2vw, 2rem);border-radius:clamp(15px, 2vw, 30px);border:1px solid var(--border);margin-bottom:2rem;outline:none;font-size:clamp(0.95rem, 1.8vw, 1.3rem);background:#fafafa;font-family:inherit;">
+                    <input type="email" id="r-email" placeholder="Correo electrónico" style="width:100%;padding:clamp(1rem, 2vw, 2rem);border-radius:clamp(15px, 2vw, 30px);border:1px solid var(--border);margin-bottom:2rem;outline:none;font-size:clamp(0.95rem, 1.8vw, 1.3rem);background:#fafafa;font-family:inherit;">
+                    <input type="password" id="r-pass" placeholder="Contraseña" style="width:100%;padding:clamp(1rem, 2vw, 2rem);border-radius:clamp(15px, 2vw, 30px);border:1px solid var(--border);margin-bottom:clamp(2rem, 3vw, 4rem);outline:none;font-size:clamp(0.95rem, 1.8vw, 1.3rem);background:#fafafa;font-family:inherit;">
+                    <button class="btn-gold" style="width:100%;padding:clamp(1rem, 2vw, 2rem);font-size:clamp(0.95rem, 1.8vw, 1.4rem);" onclick="Router.handleRegister()">Crear Cuenta</button>
+                    <p style="margin-top:clamp(2rem, 3vw, 4rem);color:var(--text-muted);">¿Ya tienes cuenta? <a href="#" onclick="Router.navigateTo('login')" style="color:var(--primary);font-weight:600;">Inicia sesión</a></p>
                 </div>
             </div>`;
         UI.initObserver();
@@ -2145,13 +2145,13 @@ window.Router = {
 
     renderTestimonialsSubmit() {
         document.getElementById('app-root').innerHTML = `
-            <div class="container" style="padding: 20rem 1rem; display: flex; justify-content: center;">
-                <div class="reveal" style="background: white; padding: 8rem; border-radius: 80px; box-shadow: var(--shadow-luxe); max-width: 800px; width:100%; text-align: center; border: 1px solid #f0f0f0;">
+            <div class="container" style="padding: clamp(8rem, 20vw, 20rem) 1rem; display: flex; justify-content: center;">
+                <div class="reveal" style="background: white; padding: clamp(2rem, 5vw, 8rem); border-radius: clamp(30px, 5vw, 80px); box-shadow: var(--shadow-luxe); max-width: 800px; width:100%; text-align: center; border: 1px solid #f0f0f0;">
                     <span class="tag">TU EXPERIENCIA</span>
-                    <h2 style="font-size: 4rem; margin: 2rem 0;">Déjanos tu Testimonio</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 5rem; font-size: 1.25rem; font-weight: 300;">Comparte cómo ha sido tu camino en Activamente.</p>
-                    
-                    <div class="star-rating-input" style="margin-bottom: 4rem; display: flex; justify-content: center;">
+                    <h2 style="font-size: clamp(2rem, 6vw, 4rem); margin: clamp(1rem, 2vw, 2rem) 0;">Déjanos tu Testimonio</h2>
+                    <p style="color: var(--text-muted); margin-bottom: clamp(2rem, 4vw, 5rem); font-size: clamp(0.9rem, 2vw, 1.25rem); font-weight: 300;">Comparte cómo ha sido tu camino en Activamente.</p>
+
+                    <div class="star-rating-input" style="margin-bottom: clamp(2rem, 3vw, 4rem); display: flex; justify-content: center;">
                         <input type="radio" id="st5" name="stars" value="5" checked><label for="st5">★</label>
                         <input type="radio" id="st4" name="stars" value="4"><label for="st4">★</label>
                         <input type="radio" id="st3" name="stars" value="3"><label for="st3">★</label>
@@ -2159,10 +2159,10 @@ window.Router = {
                         <input type="radio" id="st1" name="stars" value="1"><label for="st1">★</label>
                     </div>
 
-                    <input type="text" id="t-name" placeholder="Tu Nombre (o Anónimo)" style="width:100%; padding: 2rem; border-radius: 30px; border: 1px solid var(--border); margin-bottom: 2rem; outline: none; font-size: 1.3rem; background: #fafafa;">
-                    <textarea id="t-content" placeholder="Escribe tu mensaje aquí..." style="width:100%; padding: 2rem; border-radius: 30px; border: 1px solid var(--border); margin-bottom: 4rem; outline: none; font-size: 1.3rem; background: #fafafa; height: 200px;"></textarea>
-                    
-                    <button class="btn-gold" style="width: 100%; padding: 2.2rem; font-size: 1.4rem;" onclick="Router.handlePostSiteTestimonial()">Enviar testimonio</button>
+                    <input type="text" id="t-name" placeholder="Tu Nombre (o Anónimo)" style="width:100%; padding: clamp(1rem, 2vw, 2rem); border-radius: clamp(15px, 2vw, 30px); border: 1px solid var(--border); margin-bottom: 2rem; outline: none; font-size: clamp(0.95rem, 1.8vw, 1.3rem); background: #fafafa;">
+                    <textarea id="t-content" placeholder="Escribe tu mensaje aquí..." style="width:100%; padding: clamp(1rem, 2vw, 2rem); border-radius: clamp(15px, 2vw, 30px); border: 1px solid var(--border); margin-bottom: clamp(2rem, 3vw, 4rem); outline: none; font-size: clamp(0.95rem, 1.8vw, 1.3rem); background: #fafafa; height: clamp(120px, 20vw, 200px);"></textarea>
+
+                    <button class="btn-gold" style="width: 100%; padding: clamp(1rem, 2vw, 2.2rem); font-size: clamp(0.95rem, 1.8vw, 1.4rem);" onclick="Router.handlePostSiteTestimonial()">Enviar testimonio</button>
                 </div>
             </div>`;
         UI.initObserver();
