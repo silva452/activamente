@@ -925,5 +925,31 @@ textarea.dashboard-input:focus {
     #app-root p[style*="font-size:1.2rem"] { font-size: 0.9rem !important; }
     .star-rating-input label { font-size: 2rem !important; }
     #app-root textarea[style*="font-size: 1.3rem"] { font-size: 0.9rem !important; padding: 1rem !important; height: 120px !important; }
+
+    /* Patient dashboard grid */
+    #app-root [style*="grid-template-columns:repeat(3,1fr)"] { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+    #app-root .admin-card-luxe[style*="display:grid"] { grid-template-columns: 1fr !important; gap: 1rem !important; }
+    /* Modal fixes */
+    [style*="z-index: 20000"] > div[style*="padding: 6rem"] { padding: 2rem !important; border-radius: 30px !important; }
+    [style*="z-index: 20000"] > div[style*="padding: 6rem"] h2 { font-size: 1.8rem !important; }
+    [style*="z-index: 20000"] > div[style*="padding: 6rem"] input[style*="padding: 1.8rem"] { font-size: 0.9rem !important; padding: 1rem !important; }
+    [style*="z-index: 20000"] > div[style*="padding: 6rem"] textarea[style*="padding: 1.8rem"] { font-size: 0.9rem !important; padding: 1rem !important; height: 120px !important; }
+    [style*="z-index: 20000"] > div[style*="padding: 6rem"] button { font-size: 0.9rem !important; padding: 1.2rem !important; }
+    /* Zen modal */
+    .zen-widget { max-width: 90vw !important; padding: 1.5rem !important; }
+    .zen-widget h3 { font-size: 1.8rem !important; }
+    /* Test modal */
+    [style*="z-index: 20000"] .reveal[style*="padding: 6rem"] { padding: 2rem !important; border-radius: 30px !important; }
+    [style*="z-index: 20000"] .reveal[style*="padding: 6rem"] h2 { font-size: 2rem !important; }
+    /* Match modal */
+    [style*="z-index: 20000"] > div[style*="padding: 4rem"] { padding: 1rem !important; }
+    [style*="z-index: 20000"] > div[style*="padding: 4rem"] h2 { font-size: 2rem !important; }
+    [style*="z-index: 20000"] > div[style*="padding: 4rem"] [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 1rem !important; }
+    [style*="z-index: 20000"] > div[style*="padding: 4rem"] button[style*="padding: 3rem"] { padding: 1.5rem !important; font-size: 1rem !important; }
+    /* Admin edit modal */
+    #admin-edit-modal .admin-card-luxe[style*="padding: 5rem"] { padding: 2rem !important; }
+    #admin-edit-modal .admin-card-luxe h3 { font-size: 1.8rem !important; }
+    #admin-edit-modal input, #admin-edit-modal textarea { font-size: 0.9rem !important; }
+}
 }
 
