@@ -218,18 +218,15 @@ module.exports = async (req, res) => {
     try {
       await client.query('BEGIN');
 
-      // Run all CREATE TABLE statements
-      const statements = CREATE_TABLES.split(';').filter(s => s.trim());
-      for (const stmt of statements) {
-        if (stmt.trim().toUpperCase().startsWith('CREATE')) {
-          await client.query(stmt);
-          results.tables++;
-        }
-      }
+      // Create all tables in a single query (faster than 18 round-trips)
+      await client.query(CREATE_TABLES);
+      results.tables = (CREATE_TABLES.match(/CREATE TABLE/g) || []).length;
 
-      // Create users
-      const password = await hashPassword('password');
-      const superPassword = await hashPassword('superadmin123');
+      // Hash passwords in parallel
+      const [password, superPassword] = await Promise.all([
+        hashPassword('password'),
+        hashPassword('superadmin123')
+      ]);
 
       // SuperAdmin
       const superCheck = await client.query('SELECT id FROM users WHERE email = $1', ['superadmin@activamente.com']);

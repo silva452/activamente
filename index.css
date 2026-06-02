@@ -2651,13 +2651,16 @@ body.mood-strength {
         text-align: center;
         text-shadow: none !important;
     }
-    /* overlay oscuro sin blur para evitar render borroso en móvil */
+    /* overlay oscuro sin blur para evitar render borroso en móvil.
+       z-index 999: DEBE quedar por DEBAJO de #nav-bar (1000), porque el panel
+       del menú (.nav-links) vive dentro de #nav-bar. Si el overlay queda por
+       encima, tapa el panel y se traga los clics (el menú "no sirve"). */
     body.nav-open::after {
         content: '';
         position: fixed;
         inset: 0;
         background: rgba(2, 31, 30, 0.55);
-        z-index: 1040;
+        z-index: 999;
     }
     body.nav-open { overflow: hidden !important; }
 }

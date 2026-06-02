@@ -328,7 +328,7 @@ module.exports = async (req, res) => {
       const uid = req.query.user_id;
       if (!uid) return send({ error: 'ID omitido' }, 400);
       const result = await query(
-        'SELECT * FROM custom_tests WHERE psychologist_id = $1 AND is_active = 1',
+        'SELECT * FROM custom_tests WHERE psychologist_id = $1 AND is_active = true',
         [uid]
       );
       const tests = result.rows;

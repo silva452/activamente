@@ -931,13 +931,15 @@ textarea.dashboard-input:focus {
         text-align: center;
         text-shadow: none !important;
     }
-    /* overlay when menu open */
+    /* overlay when menu open.
+       z-index 999: por DEBAJO de #nav-bar (1000) para no tapar el panel del
+       menú ni bloquear los clics de sus enlaces. */
     body.nav-open::after {
         content: '';
         position: fixed;
         inset: 0;
         background: rgba(2, 31, 30, 0.55);
-        z-index: 1040;
+        z-index: 999;
         animation: fadeIn 0.3s ease;
     }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
