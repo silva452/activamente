@@ -12,8 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@200;300;400;500;600&display=swap"
         rel="stylesheet">
     <!-- Design System -->
-    <link rel="stylesheet" href="style.css?v=24">
-    <link rel="stylesheet" href="index.css?v=32">
+    <link rel="stylesheet" href="style.css?v=25">
+    <link rel="stylesheet" href="index.css?v=33">
     <style>
         #app-root {
             min-height: 100vh;
@@ -118,13 +118,18 @@
             <a href="javascript:void(0)" onclick="Router.navigateTo('home')" class="nav-logo-box" id="nav-logo-box">
                 <img id="nav-logo-img" src="assets/logo_lux.jfif" alt="Activamente" class="logo-lux" style="height: 52px; display: block;">
             </a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div id="nav-links" class="nav-links">
-                <a href="javascript:void(0)" onclick="Router.navigateTo('home')">Inicio</a>
-                <a href="javascript:void(0)" onclick="Router.navigateTo('forum')">El Espacio</a>
-                <a href="javascript:void(0)" onclick="Router.navigateTo('about')">Nosotros</a>
-                <a href="javascript:void(0)" onclick="Router.navigateTo('contact')">Contacto</a>
-                <a href="javascript:void(0)" onclick="Router.navigateTo('login')">Ingresar</a>
-                <a href="javascript:void(0)" onclick="Router.navigateTo('register')" class="btn-gold" style="padding:1rem 3rem;">Unirme</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('home');closeNav()">Inicio</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('forum');closeNav()">El Espacio</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('about');closeNav()">Nosotros</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('contact');closeNav()">Contacto</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('login');closeNav()">Ingresar</a>
+                <a href="javascript:void(0)" onclick="Router.navigateTo('register');closeNav()" class="btn-gold btn-gold-nav">Unirme</a>
             </div>
         </div>
     </nav>
@@ -201,6 +206,30 @@
         window.addEventListener('scroll', syncNavState, { passive: true });
         syncNavState();
         window.syncNavBar = syncNavState;
+
+        /* Hamburger toggle */
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('nav-links--open');
+                navToggle.classList.toggle('nav-toggle--active');
+                document.body.classList.toggle('nav-open');
+            });
+        }
+        window.closeNav = function () {
+            if (navLinks) navLinks.classList.remove('nav-links--open');
+            if (navToggle) navToggle.classList.remove('nav-toggle--active');
+            document.body.classList.remove('nav-open');
+        };
+        /* Close nav when clicking outside */
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('nav-links--open')) {
+                if (!e.target.closest('#nav-bar')) {
+                    closeNav();
+                }
+            }
+        });
     </script>
 </body>
 

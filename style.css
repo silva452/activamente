@@ -115,6 +115,46 @@ nav {
     opacity: 0.6;
 }
 
+/* Hamburger toggle — hidden on desktop */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1100;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+}
+
+.nav-toggle--active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle--active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle--active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Nav scrolled — hamburger lines turn gold-ish */
+.nav-bar--scrolled .nav-toggle span {
+    background: var(--text-dark);
+}
+
 /* Sanctuary Hero Section */
 .hero-sanctuary {
     min-height: 100vh;
@@ -826,9 +866,38 @@ textarea.dashboard-input:focus {
 /* Tablets pequeñas y celulares grandes */
 @media (max-width: 900px) {
     .container { padding: 0 1.5rem; }
-    .nav-links { gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
-    .nav-links a { font-size: 0.65rem; letter-spacing: 1px; }
-    .nav-links .btn-gold { padding: 0.5rem 1rem !important; font-size: 0.6rem !important; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(85vw, 360px);
+        height: 100vh;
+        background: var(--bg-silk);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        padding: 6rem 2rem;
+        transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: -20px 0 60px rgba(0,0,0,0.1);
+        z-index: 1050;
+    }
+    .nav-links--open { right: 0; }
+    .nav-links a { font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 300; }
+    .nav-links .btn-gold-nav { font-size: 0.85rem !important; padding: 1.2rem 3rem !important; }
+    /* overlay when menu open */
+    body.nav-open::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 31, 30, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 1040;
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    body.nav-open { overflow: hidden; }
     .hero-content { padding: 0 1rem; }
     .hero-sanctuary h1.hero-headline-index { font-size: clamp(1.8rem, 7vw, 2.8rem) !important; }
     .hero-subhead-index { font-size: 0.95rem !important; }
@@ -896,9 +965,9 @@ textarea.dashboard-input:focus {
     .contact-row-2 { grid-template-columns: 1fr; }
     .contact-sidebar { position: static; }
     /* Navbar adjustments */
-    .nav-content { flex-wrap: wrap; }
-    .nav-links { gap: 0.3rem 0.5rem; margin-top: 0.3rem; }
-    .nav-links a { font-size: 0.55rem; letter-spacing: 0.5px; }
+    .nav-links { gap: 2rem; padding: 5rem 1.5rem; width: 85vw; }
+    .nav-links a { font-size: 1rem; letter-spacing: 2px; }
+    .nav-links .btn-gold-nav { font-size: 0.8rem !important; padding: 1rem 2.5rem !important; }
     /* Stats */
     .stats-sanctuary { padding: 4rem 0; }
     .dashboard-container { padding: 8rem 0 4rem !important; }
@@ -970,6 +1039,5 @@ textarea.dashboard-input:focus {
     #admin-edit-modal .admin-card-luxe[style*="padding: 5rem"] { padding: 2rem !important; }
     #admin-edit-modal .admin-card-luxe h3 { font-size: 1.8rem !important; }
     #admin-edit-modal input, #admin-edit-modal textarea { font-size: 0.9rem !important; }
-}
 }
 
