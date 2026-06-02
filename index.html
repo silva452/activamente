@@ -118,7 +118,7 @@
             <a href="javascript:void(0)" onclick="Router.navigateTo('home')" class="nav-logo-box" id="nav-logo-box">
                 <img id="nav-logo-img" src="assets/logo_lux.jfif" alt="Activamente" class="logo-lux" style="height: 52px; display: block;">
             </a>
-            <button id="nav-toggle" class="nav-toggle" aria-label="Menú" onclick="toggleNav()">
+            <button id="nav-toggle" class="nav-toggle" aria-label="Menú">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -175,7 +175,7 @@
     </footer>
 
     <script>
-        // Menú hamburguesa — funciones globales, se ejecutan antes que app.js
+        // Menú hamburguesa — event listeners, se ejecutan antes que app.js
         function toggleNav() {
             var l = document.getElementById('nav-links');
             var t = document.getElementById('nav-toggle');
@@ -191,9 +191,26 @@
             if (t) t.classList.remove('nav-toggle--active');
             document.body.classList.remove('nav-open');
         }
+        // Toggle via event listener (más robusto que onclick en HTML)
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggleBtn = document.getElementById('nav-toggle');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleNav();
+                });
+            }
+        });
+        // Cerrar al hacer clic fuera del nav
         document.addEventListener('click', function(e) {
             var l = document.getElementById('nav-links');
             if (l && l.classList.contains('nav-links--open') && !e.target.closest('#nav-bar')) {
+                closeNav();
+            }
+        });
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
                 closeNav();
             }
         });
