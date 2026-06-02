@@ -118,27 +118,42 @@ nav {
 /* Hamburger toggle — hidden on desktop */
 .nav-toggle {
     display: none;
-    background: none;
-    border: none;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.6rem 0.5rem;
     z-index: 1100;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    min-width: 44px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
 .nav-toggle span {
     display: block;
-    width: 28px;
-    height: 2px;
-    background: var(--text-dark);
-    border-radius: 2px;
+    width: 24px;
+    height: 2.5px;
+    background: white;
+    border-radius: 3px;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     transform-origin: center;
 }
 
+.nav-toggle:active {
+    transform: scale(0.92);
+}
+
+.nav-toggle--active {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+}
+
 .nav-toggle--active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(7.5px) rotate(45deg);
 }
 
 .nav-toggle--active span:nth-child(2) {
@@ -147,10 +162,14 @@ nav {
 }
 
 .nav-toggle--active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-7.5px) rotate(-45deg);
 }
 
-/* Nav scrolled — hamburger lines turn gold-ish */
+/* When nav is scrolled (solid bg) — hamburger turns dark */
+.nav-bar--scrolled .nav-toggle {
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.08);
+}
 .nav-bar--scrolled .nav-toggle span {
     background: var(--text-dark);
 }
@@ -867,25 +886,49 @@ textarea.dashboard-input:focus {
 @media (max-width: 900px) {
     .container { padding: 0 1.5rem; }
     .nav-toggle { display: flex; }
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: min(85vw, 360px);
-        height: 100vh;
-        background: var(--bg-silk);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2.5rem;
-        padding: 6rem 2rem;
-        transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: -20px 0 60px rgba(0,0,0,0.1);
-        z-index: 1050;
+    /* override index.css mobile nav-links — usar menú hamburguesa */
+    .nav-links,
+    #nav-bar .nav-links {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        left: auto !important;
+        width: min(85vw, 360px) !important;
+        max-width: 360px !important;
+        height: 100vh !important;
+        background: var(--bg-silk) !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 2.5rem !important;
+        padding: 6rem 2rem !important;
+        transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        box-shadow: -20px 0 60px rgba(0,0,0,0.1) !important;
+        z-index: 1050 !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
     }
-    .nav-links--open { right: 0; }
-    .nav-links a { font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 300; }
-    .nav-links .btn-gold-nav { font-size: 0.85rem !important; padding: 1.2rem 3rem !important; }
+    .nav-links--open,
+    #nav-bar .nav-links--open { right: 0 !important; }
+    .nav-links a,
+    #nav-bar .nav-links a:not(.btn-gold) { font-size: 1.1rem !important; letter-spacing: 3px !important; color: var(--text-dark) !important; text-shadow: none !important; font-weight: 400 !important; padding: 0.5rem !important; white-space: nowrap; }
+    .nav-links .btn-gold-nav,
+    #nav-bar .nav-links .btn-gold-nav {
+        display: inline-block !important;
+        font-size: 0.9rem !important;
+        padding: 1.2rem 3.5rem !important;
+        margin-top: 0.5rem;
+        background: linear-gradient(135deg, #d4a76a 0%, #f1d592 50%, #c29a5b 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 100px !important;
+        font-weight: 700 !important;
+        letter-spacing: 2px;
+        box-shadow: 0 15px 40px rgba(194, 154, 91, 0.4) !important;
+        opacity: 1 !important;
+        text-align: center;
+        text-shadow: none !important;
+    }
     /* overlay when menu open */
     body.nav-open::after {
         content: '';
@@ -965,9 +1008,16 @@ textarea.dashboard-input:focus {
     .contact-row-2 { grid-template-columns: 1fr; }
     .contact-sidebar { position: static; }
     /* Navbar adjustments */
-    .nav-links { gap: 2rem; padding: 5rem 1.5rem; width: 85vw; }
-    .nav-links a { font-size: 1rem; letter-spacing: 2px; }
-    .nav-links .btn-gold-nav { font-size: 0.8rem !important; padding: 1rem 2.5rem !important; }
+    .nav-links,
+    #nav-bar .nav-links { gap: 2rem !important; padding: 5rem 1.5rem !important; width: 85vw !important; max-width: 360px !important; }
+    .nav-links a,
+    #nav-bar .nav-links a:not(.btn-gold) { font-size: 1rem !important; letter-spacing: 2px !important; }
+    .nav-links .btn-gold-nav,
+    #nav-bar .nav-links .btn-gold-nav {
+        font-size: 0.85rem !important;
+        padding: 1rem 2.5rem !important;
+        margin-top: 0.3rem;
+    }
     /* Stats */
     .stats-sanctuary { padding: 4rem 0; }
     .dashboard-container { padding: 8rem 0 4rem !important; }
