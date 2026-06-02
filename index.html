@@ -174,7 +174,33 @@
         </div>
     </footer>
 
-    <script src="app.js?v=53"></script>
+    <script>
+        // Hamburger toggle — se ejecuta ANTES de app.js para evitar bloqueo
+        (function() {
+            var toggle = document.getElementById('nav-toggle');
+            var links = document.getElementById('nav-links');
+            if (toggle && links) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    links.classList.toggle('nav-links--open');
+                    toggle.classList.toggle('nav-toggle--active');
+                    document.body.classList.toggle('nav-open');
+                });
+            }
+            window.closeNav = function() {
+                if (links) links.classList.remove('nav-links--open');
+                if (toggle) toggle.classList.remove('nav-toggle--active');
+                document.body.classList.remove('nav-open');
+            };
+            // Cerrar al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (links && links.classList.contains('nav-links--open') && !e.target.closest('#nav-bar')) {
+                    window.closeNav();
+                }
+            });
+        })();
+    </script>
+    <script src="app.js?v=54"></script>
     <script>
         window.addEventListener('load', () => {
             const loading = document.getElementById('loading');
@@ -206,30 +232,6 @@
         window.addEventListener('scroll', syncNavState, { passive: true });
         syncNavState();
         window.syncNavBar = syncNavState;
-
-        /* Hamburger toggle */
-        const navToggle = document.getElementById('nav-toggle');
-        const navLinks = document.getElementById('nav-links');
-        if (navToggle) {
-            navToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('nav-links--open');
-                navToggle.classList.toggle('nav-toggle--active');
-                document.body.classList.toggle('nav-open');
-            });
-        }
-        window.closeNav = function () {
-            if (navLinks) navLinks.classList.remove('nav-links--open');
-            if (navToggle) navToggle.classList.remove('nav-toggle--active');
-            document.body.classList.remove('nav-open');
-        };
-        /* Close nav when clicking outside */
-        document.addEventListener('click', (e) => {
-            if (navLinks.classList.contains('nav-links--open')) {
-                if (!e.target.closest('#nav-bar')) {
-                    closeNav();
-                }
-            }
-        });
     </script>
 </body>
 
