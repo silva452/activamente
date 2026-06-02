@@ -451,6 +451,23 @@ nav {
     .card-luxury-info {
         padding: 3rem;
     }
+
+    /* Profile header tablet */
+    .profile-lux-header { padding: 8rem 0 5rem !important; }
+    .profile-lux-header h1 { font-size: clamp(3rem, 6vw, 5.5rem) !important; }
+    .profile-lux-header .container > div { grid-template-columns: 1fr !important; gap: 3rem !important; }
+    .profile-lux-header .container > div > div:first-child { height: 350px !important; }
+    .profile-lux-header .container > div > div:first-child img { border-radius: 30px !important; }
+    /* Profile bio columns stack on tablet */
+    #app-root > .container { grid-template-columns: 1fr !important; gap: clamp(2rem, 4vw, 4rem) !important; }
+    #app-root > .container > div:last-child { position: static !important; }
+
+    /* Masterpiece listing tablet */
+    .masterpiece-block { grid-template-columns: 1fr !important; min-height: auto !important; }
+    .masterpiece-block:nth-child(even) { direction: ltr !important; }
+    .masterpiece-img-box { height: 50vh !important; min-height: 300px !important; }
+    .masterpiece-info { padding: 4rem !important; }
+    .masterpiece-info h2 { font-size: clamp(3rem, 6vw, 5rem) !important; }
 }
 
 /* --- MASTERPIECE DASHBOARD --- */
@@ -835,6 +852,9 @@ textarea.dashboard-input:focus {
     .masterpiece-price span { font-size: 0.8rem; }
     .masterpiece-info { padding: 2rem 1.2rem !important; }
     .masterpiece-img-box { height: 50vw; min-height: 220px; }
+    .masterpiece-block { grid-template-columns: 1fr !important; min-height: auto !important; }
+    .masterpiece-block:nth-child(even) { direction: ltr !important; }
+    .masterpiece-info .tag { font-size: 0.6rem; letter-spacing: 3px; }
     .dashboard-header h1 { font-size: 2.5rem !important; }
     .dashboard-form { padding: 2rem !important; border-radius: 20px !important; }
     .dashboard-sidebar { padding: 3rem 1.5rem !important; border-radius: 30px !important; }
@@ -842,16 +862,16 @@ textarea.dashboard-input:focus {
     .form-group { margin-bottom: 2rem !important; }
     .form-group label { font-size: 0.6rem; letter-spacing: 2px; }
     /* Profile */
-    .profile-lux-header { padding: 10rem 0 4rem !important; }
+    .profile-lux-header { padding: 6rem 0 3rem !important; }
     .profile-lux-header h1 { font-size: 2.5rem !important; }
     .profile-lux-header .container > div { grid-template-columns: 1fr !important; gap: 2rem !important; }
-    .profile-lux-header .container > div > div:first-child { height: 300px !important; }
+    .profile-lux-header .container > div > div:first-child { height: 250px !important; }
     .profile-lux-header .container > div > div:first-child img { border-radius: 30px !important; }
     /* Profile bio columns stack */
-    #app-root .container[style*="padding: clamp(8rem"] { grid-template-columns: 1fr !important; gap: clamp(3rem, 5vw, 6rem) !important; }
-    #app-root .container[style*="padding: clamp(8rem"] > div:last-child { position: static !important; }
+    #app-root > .container { grid-template-columns: 1fr !important; gap: clamp(2rem, 4vw, 4rem) !important; }
+    #app-root > .container > div:last-child { position: static !important; }
     /* Booking sticky card mobile */
-    #app-root .container[style*="padding: clamp(8rem"] [style*="position: sticky"] { position: static !important; }
+    #app-root > .container [style*="position: sticky"] { position: static !important; }
     /* Admin panel */
     .admin-tab { padding: 0.8rem 1.2rem; font-size: 0.7rem; }
     .admin-card-luxe { padding: 1.5rem; border-radius: 20px; }

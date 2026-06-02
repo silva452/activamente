@@ -346,7 +346,7 @@ const UI = {
 
                     <div class="masterpiece-footer">
                         <div class="masterpiece-price">$${p.price || '--'} <span>/ sesión</span></div>
-                        <button class="btn-gold" style="padding: 1.5rem 4rem; font-size: 1.2rem;" onclick="Router.navigateTo('profile', ${p.user_id || 0})">Ver Perfil Maestro</button>
+                        <button class="btn-gold" style="padding: clamp(1rem, 1.5vw, 1.5rem) clamp(2rem, 4vw, 4rem); font-size: clamp(0.85rem, 1.2vw, 1.2rem);" onclick="Router.navigateTo('profile', ${p.user_id || 0})">Ver Perfil Maestro</button>
                     </div>
                 </div>
             </div>`;
@@ -406,16 +406,16 @@ const UI = {
             <div class="profile-lux-header">
                 <div class="container reveal">
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: clamp(2rem, 5vw, 8rem); align-items: center;">
-                        <div style="height: 600px; border-radius: 50px; overflow: hidden; box-shadow: var(--shadow-luxe);">
+                        <div style="height: clamp(250px, 50vw, 600px); border-radius: clamp(20px, 5vw, 50px); overflow: hidden; box-shadow: var(--shadow-luxe);">
                             <img src="${p.image || 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=600'}" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div>
-                             <span class="tag" style="color: var(--accent); letter-spacing: 4px; font-weight: 700;">MAESTRÍA CLÍNICA</span>
+                             <span class="tag" style="color: var(--accent); letter-spacing: 4px; font-weight: 700; font-size: clamp(0.6rem, 1.5vw, 0.8rem);">MAESTRÍA CLÍNICA</span>
                              <h1>${p.name}</h1>
-                             <div style="font-size: 2rem; opacity: 0.8; font-style: italic; margin-bottom: 2rem;">${p.specialty}</div>
+                             <div style="font-size: clamp(1.4rem, 3vw, 2rem); opacity: 0.8; font-style: italic; margin-bottom: clamp(1rem, 2vw, 2rem);">${p.specialty}</div>
                              
                              ${p.audio_url ? `
-                             <div class="audio-sanctuary reveal-up" style="margin-bottom: 3rem;">
+                             <div class="audio-sanctuary reveal-up" style="margin-bottom: clamp(1.5rem, 3vw, 3rem);">
                                  <button class="audio-btn" onclick="UI.toggleAudio('${p.audio_url}')">▶</button>
                                  <div class="waveform">
                                      ${Array(15).fill(0).map(() => `<div class="wave-bar" style="animation-delay: ${Math.random() * 2}s"></div>`).join('')}
@@ -423,13 +423,13 @@ const UI = {
                                  <small style="letter-spacing: 2px; opacity: 0.6;">VOZ DEL SANTUARIO</small>
                              </div>` : ''}
 
-                             <div style="display: flex; gap: 6rem;">
-                                 <div><b style="font-size: 2.5rem; color: var(--accent);">★ ${p.rating}</b><br><small style="text-transform: uppercase; letter-spacing: 2px; opacity: 0.6;">Excelencia</small></div>
-                                 <div><b style="font-size: 2.5rem;">${p.reviews_count}</b><br><small style="text-transform: uppercase; letter-spacing: 2px; opacity: 0.6;">Testimonios</small></div>
-                                 <div><b style="font-size: 2.5rem;">$${p.price}</b><br><small style="text-transform: uppercase; letter-spacing: 2px; opacity: 0.6;">Inversión</small></div>
+                             <div style="display: flex; gap: clamp(1.5rem, 4vw, 6rem); flex-wrap: wrap;">
+                                 <div><b style="font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--accent);">★ ${p.rating}</b><br><small style="text-transform: uppercase; letter-spacing: 2px; opacity: 0.6;">Excelencia</small></div>
+                                 <div><b style="font-size: clamp(1.8rem, 4vw, 2.5rem);">${p.reviews_count}</b><br><small style="text-transform: uppercase; letter-spacing: 2px; opacity: 0.6;">Testimonios</small></div>
+                                 <div><b style="font-size: clamp(1.8rem, 4vw, 2.5rem);">$${p.price}</b><br><small style="text-transform: uppercase; letter-spacing: 2px; opacity: 0.6;">Inversión</small></div>
                              </div>
-                             <div style="margin-top: 5rem; display: flex; gap: 2rem;">
-                                 <a href="https://wa.me/${p.whatsapp_number || ''}?text=Hola%20${encodeURIComponent(p.name)},%20vengo%20de%20Activamente..." target="_blank" class="btn-gold" style="background: #25D366; text-decoration: none; display: flex; align-items: center; gap: 1rem;">
+                             <div style="margin-top: clamp(3rem, 5vw, 5rem); display: flex; gap: clamp(1rem, 2vw, 2rem); flex-wrap: wrap;">
+                                 <a href="https://wa.me/${p.whatsapp_number || ''}?text=Hola%20${encodeURIComponent(p.name)},%20vengo%20de%20Activamente..." target="_blank" class="btn-gold" style="background: #25D366; text-decoration: none; display: flex; align-items: center; gap: 1rem; flex: 1 1 auto; min-width: 200px; justify-content: center;">
                                      <svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.148-1.758-.868-2.031-.967-.272-.099-.47-.148-.668.148-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.148-.174.198-.297.297-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                                      WhatsApp
                                  </a>
@@ -440,62 +440,62 @@ const UI = {
                 </div>
             </div>
             
-            <div class="container" style="padding: clamp(8rem, 10vw, 15rem) 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(4rem, 6vw, 12rem);">
+            <div class="container" style="padding: clamp(3rem, 8vw, 15rem) 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(3rem, 5vw, 12rem);">
                 <div class="reveal">
-                    <h2 style="font-size: 4rem; margin-bottom: 4rem;">Sobre el Mentor</h2>
-                    <p style="font-size: 1.5rem; color: var(--text-muted); line-height: 2.4; margin-bottom: 6rem; font-weight: 300;">${p.bio}</p>
+                    <h2 style="font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: clamp(2rem, 4vw, 4rem);">Sobre el Mentor</h2>
+                    <p style="font-size: clamp(1rem, 2vw, 1.5rem); color: var(--text-muted); line-height: 2.4; margin-bottom: clamp(3rem, 5vw, 6rem); font-weight: 300;">${p.bio}</p>
                     
-                    <div style="background: white; padding: 6rem; border-radius: 60px; border: 1px solid var(--border); box-shadow: var(--shadow-luxe); margin-bottom: 8rem;">
-                        <div style="margin-bottom: 5rem; border-left: 5px solid var(--accent); padding-left: 4rem;">
-                            <h4 style="font-size: 1.8rem; margin-bottom: 1rem;">Formación Académica</h4>
-                            <p style="font-size: 1.25rem; color: var(--text-muted);">${p.education}</p>
+                    <div style="background: white; padding: clamp(2rem, 5vw, 6rem); border-radius: clamp(30px, 5vw, 60px); border: 1px solid var(--border); box-shadow: var(--shadow-luxe); margin-bottom: clamp(4rem, 6vw, 8rem);">
+                        <div style="margin-bottom: clamp(2.5rem, 4vw, 5rem); border-left: 5px solid var(--accent); padding-left: clamp(1.5rem, 3vw, 4rem);">
+                            <h4 style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); margin-bottom: 0.8rem;">Formación Académica</h4>
+                            <p style="font-size: clamp(0.95rem, 1.5vw, 1.25rem); color: var(--text-muted);">${p.education}</p>
                         </div>
-                        <div style="border-left: 5px solid var(--primary); padding-left: 4rem;">
-                            <h4 style="font-size: 1.8rem; margin-bottom: 1rem;">Filosofía Terapéutica</h4>
-                            <p style="font-size: 1.25rem; color: var(--text-muted);">${p.approach}</p>
+                        <div style="border-left: 5px solid var(--primary); padding-left: clamp(1.5rem, 3vw, 4rem);">
+                            <h4 style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); margin-bottom: 0.8rem;">Filosofía Terapéutica</h4>
+                            <p style="font-size: clamp(0.95rem, 1.5vw, 1.25rem); color: var(--text-muted);">${p.approach}</p>
                         </div>
                     </div>
 
-                    <h2 style="font-size: 3rem; margin-bottom: 4rem;">Mapa de Crecimiento</h2>
+                    <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: clamp(2rem, 4vw, 4rem);">Mapa de Crecimiento</h2>
                     <div id="journey-visual" class="reveal">
                          <!-- Dynamically loaded journey -->
                     </div>
 
-                    <h2 style="font-size: 3rem; margin-bottom: 4rem;">Bitácora de Sabiduría</h2>
-                    <div class="blog-grid" style="display: grid; grid-template-columns: 1fr; gap: 4rem; margin-bottom: 8rem;">
+                    <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: clamp(2rem, 4vw, 4rem);">Bitácora de Sabiduría</h2>
+                    <div class="blog-grid" style="display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 4vw, 4rem); margin-bottom: clamp(4rem, 6vw, 8rem);">
                         ${blog.length ? blog.map(b => `
-                            <div class="blog-card reveal" style="background: white; border-radius: 40px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
-                                ${b.type === 'video' ? `<iframe width="100%" height="400" src="${String(b.media_url || '').replace('watch?v=', 'embed/')}" frameborder="0" allowfullscreen></iframe>` : ''}
-                                <div style="padding: 4rem;">
+                            <div class="blog-card reveal" style="background: white; border-radius: clamp(20px, 4vw, 40px); overflow: hidden; border: 1px solid #eee; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                                ${b.type === 'video' ? `<iframe width="100%" height="400" src="${String(b.media_url || '').replace('watch?v=', 'embed/')}" frameborder="0" allowfullscreen style="height: clamp(200px, 40vw, 400px);"></iframe>` : ''}
+                                <div style="padding: clamp(1.5rem, 3vw, 4rem);">
                                     <span class="tag" style="font-size: 0.7rem;">${b.type.toUpperCase()}</span>
-                                    <h3 style="font-size: 2.5rem; margin-bottom: 2rem;">${b.title}</h3>
-                                    <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 2;">${b.content}</p>
+                                    <h3 style="font-size: clamp(1.5rem, 3vw, 2.5rem); margin-bottom: clamp(1rem, 2vw, 2rem);">${b.title}</h3>
+                                    <p style="font-size: clamp(0.95rem, 1.5vw, 1.2rem); color: var(--text-muted); line-height: 2;">${b.content}</p>
                                 </div>
                             </div>
                         `).join('') : '<p style="opacity: 0.5;">Aún no hay publicaciones en la bitácora.</p>'}
                     </div>
 
-                    <h2 style="font-size: 3rem; margin-bottom: 4rem;">Testimonios</h2>
+                    <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: clamp(2rem, 4vw, 4rem);">Testimonios</h2>
                     <div class="testimonials">
                         ${testimonials.map(t => {
                             const ts = Math.min(5, Math.max(0, parseInt(t.stars, 10) || 0));
                             return `
-                            <div class="testimonial-bubble reveal" style="background:#fdfbf7;padding:4rem;border-radius:40px;border:1px solid rgba(194,154,91,0.2);margin-bottom:3rem;">
-                                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
-                                    <div style="color:var(--accent);font-size:1.5rem;">${'★'.repeat(ts)}${'☆'.repeat(5 - ts)}</div>
-                                    ${t.is_verified=='1'||t.is_verified===1?`<span style="background:rgba(40,167,69,0.1);color:#28a745;padding:0.4rem 1.2rem;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:1px;">✓ VERIFICADO</span>`:''}
+                            <div class="testimonial-bubble reveal" style="background:#fdfbf7;padding:clamp(1.5rem,3vw,4rem);border-radius:clamp(20px,4vw,40px);border:1px solid rgba(194,154,91,0.2);margin-bottom:clamp(1.5rem,3vw,3rem);">
+                                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(1rem,2vw,2rem);">
+                                    <div style="color:var(--accent);font-size:clamp(1rem,2vw,1.5rem);">${'★'.repeat(ts)}${'☆'.repeat(5 - ts)}</div>
+                                    ${t.is_verified=='1'||t.is_verified===1?`<span style="background:rgba(40,167,69,0.1);color:#28a745;padding:0.4rem 1.2rem;border-radius:20px;font-size:0.65rem;font-weight:700;letter-spacing:1px;">✓ VERIFICADO</span>`:''}
                                 </div>
-                                <p style="font-style:italic;font-size:1.3rem;margin-bottom:2rem;">"${t.content}"</p>
-                                <b style="font-size:0.9rem;text-transform:uppercase;letter-spacing:2px;">— ${t.patient_name}</b>
+                                <p style="font-style:italic;font-size:clamp(0.95rem,1.5vw,1.3rem);margin-bottom:clamp(1rem,2vw,2rem);">"${t.content}"</p>
+                                <b style="font-size:clamp(0.75rem,1vw,0.9rem);text-transform:uppercase;letter-spacing:2px;">— ${t.patient_name}</b>
                             </div>
                         `;
                         }).join('')}
                     </div>
                 </div>
                 <div>
-                    <div class="reveal" style="background: white; padding: 6rem; border-radius: 60px; position: sticky; top: 12rem; border: 1px solid var(--accent); box-shadow: var(--shadow-luxe);">
-                        <h3 style="margin-bottom: 2rem; font-size: 2.5rem;">Cita Privada</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 4rem; font-size: 1.2rem;">Llena tus datos para que el especialista te contacte.</p>
+                    <div class="reveal" style="background: white; padding: clamp(2rem, 4vw, 6rem); border-radius: clamp(30px, 5vw, 60px); position: sticky; top: 12rem; border: 1px solid var(--accent); box-shadow: var(--shadow-luxe);">
+                        <h3 style="margin-bottom: clamp(1rem, 2vw, 2rem); font-size: clamp(1.8rem, 3.5vw, 2.5rem);">Cita Privada</h3>
+                        <p style="color: var(--text-muted); margin-bottom: clamp(2rem, 4vw, 4rem); font-size: clamp(0.95rem, 1.5vw, 1.2rem);">Llena tus datos para que el especialista te contacte.</p>
                         
                             <div id="booking-form">
                             <input type="text" id="b-name" class="dashboard-input" style="font-size: 1.1rem; padding: 1.5rem 0;" placeholder="Nombre Completo">
@@ -505,16 +505,16 @@ const UI = {
                                 <option value="online">Consulta Online</option>
                                 <option value="presencial">Presencial</option>
                             </select>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
-                                <input type="date" id="b-date" class="dashboard-input" style="font-size: 1rem;">
-                                <input type="time" id="b-time" class="dashboard-input" style="font-size: 1rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2vw, 2rem); margin-top: clamp(1rem, 2vw, 2rem);">
+                                <input type="date" id="b-date" class="dashboard-input" style="font-size: clamp(0.85rem, 1.2vw, 1rem);">
+                                <input type="time" id="b-time" class="dashboard-input" style="font-size: clamp(0.85rem, 1.2vw, 1rem);">
                             </div>
-                            <div style="font-size: 3rem; font-weight: 300; margin: 4rem 0;">$${p.price} <span style="font-size: 1rem; opacity: 0.5;">MXN</span></div>
-                            <button class="btn-gold" style="width: 100%; border-radius: 30px; padding: 2.2rem; font-size: 1.4rem;" onclick="Router.handleBooking(${id})">Solicitar Agendamiento</button>
+                            <div style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; margin: clamp(2rem, 4vw, 4rem) 0;">$${p.price} <span style="font-size: clamp(0.7rem, 1vw, 1rem); opacity: 0.5;">MXN</span></div>
+                            <button class="btn-gold" style="width: 100%; border-radius: 30px; padding: clamp(1.5rem, 2.5vw, 2.2rem); font-size: clamp(1rem, 2vw, 1.4rem);" onclick="Router.handleBooking(${id})">Solicitar Agendamiento</button>
                         </div>
                         
-                        <div style="margin-top: 4rem; padding-top: 4rem; border-top: 1px solid #f0f0f0;">
-                            <h4 style="letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 2rem;">RECURSOS EXCLUSIVOS</h4>
+                        <div style="margin-top: clamp(2rem, 4vw, 4rem); padding-top: clamp(2rem, 4vw, 4rem); border-top: 1px solid #f0f0f0;">
+                            <h4 style="letter-spacing: 2px; font-size: clamp(0.6rem, 1vw, 0.8rem); margin-bottom: clamp(1rem, 2vw, 2rem);">RECURSOS EXCLUSIVOS</h4>
                             <button class="btn-gold" style="width: 100%; background: #fdfbf7; color: var(--primary); border: 1px solid var(--border);" onclick="UI.renderTests(${id})">Realizar Test de Evaluación</button>
                         </div>
                     </div>
