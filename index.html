@@ -118,7 +118,7 @@
             <a href="javascript:void(0)" onclick="Router.navigateTo('home')" class="nav-logo-box" id="nav-logo-box">
                 <img id="nav-logo-img" src="assets/logo_lux.jfif" alt="Activamente" class="logo-lux" style="height: 52px; display: block;">
             </a>
-            <button id="nav-toggle" class="nav-toggle" aria-label="Menú">
+            <button id="nav-toggle" class="nav-toggle" aria-label="Menú" onclick="toggleNav(event)">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -175,32 +175,32 @@
     </footer>
 
     <script>
-        // Hamburger toggle — se ejecuta ANTES de app.js para evitar bloqueo
-        (function() {
-            var toggle = document.getElementById('nav-toggle');
-            var links = document.getElementById('nav-links');
-            if (toggle && links) {
-                toggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    links.classList.toggle('nav-links--open');
-                    toggle.classList.toggle('nav-toggle--active');
-                    document.body.classList.toggle('nav-open');
-                });
+        // Hamburger toggle — funciones globales, no dependen de app.js
+        function toggleNav(e) {
+            if (e) e.stopPropagation();
+            var t = document.getElementById('nav-toggle');
+            var l = document.getElementById('nav-links');
+            if (!t || !l) return;
+            l.classList.toggle('nav-links--open');
+            t.classList.toggle('nav-toggle--active');
+            document.body.classList.toggle('nav-open');
+        }
+        window.closeNav = function() {
+            var t = document.getElementById('nav-toggle');
+            var l = document.getElementById('nav-links');
+            if (l) l.classList.remove('nav-links--open');
+            if (t) t.classList.remove('nav-toggle--active');
+            document.body.classList.remove('nav-open');
+        };
+        // Cerrar al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            var l = document.getElementById('nav-links');
+            if (l && l.classList.contains('nav-links--open') && !e.target.closest('#nav-bar')) {
+                window.closeNav();
             }
-            window.closeNav = function() {
-                if (links) links.classList.remove('nav-links--open');
-                if (toggle) toggle.classList.remove('nav-toggle--active');
-                document.body.classList.remove('nav-open');
-            };
-            // Cerrar al hacer clic fuera
-            document.addEventListener('click', function(e) {
-                if (links && links.classList.contains('nav-links--open') && !e.target.closest('#nav-bar')) {
-                    window.closeNav();
-                }
-            });
-        })();
+        });
     </script>
-    <script src="app.js?v=54"></script>
+    <script src="app.js?v=55"></script>
     <script>
         window.addEventListener('load', () => {
             const loading = document.getElementById('loading');
