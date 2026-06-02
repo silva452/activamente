@@ -936,8 +936,7 @@ textarea.dashboard-input:focus {
         content: '';
         position: fixed;
         inset: 0;
-        background: rgba(2, 31, 30, 0.6);
-        backdrop-filter: blur(4px);
+        background: rgba(2, 31, 30, 0.55);
         z-index: 1040;
         animation: fadeIn 0.3s ease;
     }
