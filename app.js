@@ -2260,41 +2260,42 @@ async function init() {
         window.__activamenteRole = data.logged_in ? (data.role || '') : null;
 
         if (nav) {
+            var close = 'closeNav()';
             if (data.logged_in) {
                 const role = data.role || '';
                 const isPatient = role === 'patient';
                 const isPsychologist = role === 'psychologist';
                 const isSuperAdmin = role === 'superadmin';
                 const commonNav = `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('home')">Inicio</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('about')">Nosotros</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('contact')">Contacto</a>`;
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('home');${close}">Inicio</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('about');${close}">Nosotros</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('contact');${close}">Contacto</a>`;
                 if (isSuperAdmin) {
                     nav.innerHTML = commonNav + `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('superadmin')" style="color:var(--accent);font-weight:700;">Panel Superadmin</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('superadmin');${close}" style="color:var(--accent);font-weight:700;">Panel Superadmin</a>
                     <a href="javascript:void(0)" onclick="Router.handleLogout()">Salir</a>`;
                 } else if (isPatient) {
                     nav.innerHTML = commonNav + `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('patient-dashboard')" style="color:var(--accent);font-weight:700;">Mi portal (paciente)</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('patient-dashboard');${close}" style="color:var(--accent);font-weight:700;">Mi portal (paciente)</a>
                     <a href="javascript:void(0)" onclick="Router.handleLogout()">Salir</a>`;
                 } else if (isPsychologist) {
                     nav.innerHTML = commonNav + `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('forum')">El Espacio</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('dashboard')" style="color:var(--accent);font-weight:700;">Panel especialista</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('forum');${close}">El Espacio</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('dashboard');${close}" style="color:var(--accent);font-weight:700;">Panel especialista</a>
                     <a href="javascript:void(0)" onclick="Router.handleLogout()">Salir</a>`;
                 } else {
                     nav.innerHTML = commonNav + `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('home')" style="color:var(--accent);font-weight:700;">Mi cuenta</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('home');${close}" style="color:var(--accent);font-weight:700;">Mi cuenta</a>
                     <a href="javascript:void(0)" onclick="Router.handleLogout()">Salir</a>`;
                 }
             } else {
                 nav.innerHTML = `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('home')">Inicio</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('forum')">El Espacio</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('about')">Nosotros</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('contact')">Contacto</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('login')">Ingresar</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('register')" class="btn-gold" style="padding:1rem 3rem;">Unirme</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('home');${close}">Inicio</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('forum');${close}">El Espacio</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('about');${close}">Nosotros</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('contact');${close}">Contacto</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('login');${close}">Ingresar</a>
+                    <a href="javascript:void(0)" onclick="Router.navigateTo('register');${close}" class="btn-gold btn-gold-nav">Unirme</a>
                 `;
             }
         }
