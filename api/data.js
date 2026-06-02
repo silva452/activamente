@@ -403,6 +403,13 @@ module.exports = async (req, res) => {
       return send({ success: true });
     }
 
+    // ===================== TEMP: Set all prices to 300 =====================
+    else if (action === 'set_all_prices') {
+      await query('UPDATE psychologists SET price = 300');
+      const result = await query('SELECT name, price FROM psychologists ORDER BY name');
+      return send({ success: true, message: 'Todos los psicólogos ahora cobran $300', psychologists: result.rows });
+    }
+
     // ===================== UNKNOWN =====================
     else {
       return send({ error: 'Action not found' }, 404);
