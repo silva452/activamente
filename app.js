@@ -1733,10 +1733,17 @@ const UI = {
                                     </div>
                                 </div>
                                 <div style="display:flex;align-items:center;gap:1.5rem;">
-                                    <div style="width:44px;height:44px;background:rgba(194,154,91,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🌎</div>
+                                    <div style="width:44px;height:44px;background:rgba(194,154,91,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">📍</div>
                                     <div>
-                                        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;opacity:0.5;margin-bottom:0.2rem;">Presencia</div>
-                                        <div style="font-size:0.95rem;">México</div>
+                                        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;opacity:0.5;margin-bottom:0.2rem;">Dirección</div>
+                                        <div style="font-size:0.85rem;line-height:1.5;">Av. Pantitlán 239, Las Fuentes,<br>57600 Cdad. Nezahualcóyotl, Méx.</div>
+                                    </div>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:1.5rem;">
+                                    <div style="width:44px;height:44px;background:rgba(194,154,91,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">📞</div>
+                                    <div>
+                                        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;opacity:0.5;margin-bottom:0.2rem;">Teléfono</div>
+                                        <a href="tel:+525654463090" style="font-size:0.95rem;color:#fff;text-decoration:underline;text-underline-offset:3px;">+52 56 5446 3090</a>
                                     </div>
                                 </div>
                                 <div style="display:flex;align-items:center;gap:1.5rem;">
