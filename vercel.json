@@ -24,6 +24,11 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/style.css", "destination": "/style.css" },
+    { "source": "/index.css", "destination": "/index.css" },
+    { "source": "/app.js", "destination": "/app.js" },
     { "source": "/", "destination": "/api/render" },
     { "source": "/(.*)", "destination": "/api/render" }
   ]
