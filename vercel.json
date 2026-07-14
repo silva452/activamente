@@ -24,6 +24,7 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/", "destination": "/api/render" },
     { "source": "/(.*)", "destination": "/api/render" }
   ]
 }
