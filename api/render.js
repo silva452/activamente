@@ -1,4 +1,4 @@
-// /api/render - SSR entry point: always serves SEO-friendly content with SPA shell
+﻿// /api/render - SSR entry point: always serves SEO-friendly content with SPA shell
 // The SPA (app.js) replaces #app-root content when it loads
 const fs = require('fs');
 const path = require('path');
@@ -19,7 +19,7 @@ function escapeHtml(str) {
 
 function starsHtml(rating) {
     const n = Math.round(parseFloat(rating) || 0);
-    return '<span style="color:#c29a5b;">' + '★'.repeat(Math.min(5, n)) + '☆'.repeat(Math.max(0, 5 - n)) + '</span>';
+    return '<span style="color:#c29a5b;">' + 'â˜…'.repeat(Math.min(5, n)) + 'â˜†'.repeat(Math.max(0, 5 - n)) + '</span>';
 }
 
 function loadTemplate() {
@@ -36,7 +36,7 @@ function loadTemplate() {
 function injectSEO(html, seo) {
     const { title, description, canonical } = seo;
 
-    // Strip the loading screen ENTIRELY — remove everything from <div id="loading"> to the <nav> tag
+    // Strip the loading screen ENTIRELY â€” remove everything from <div id="loading"> to the <nav> tag
     // (simple regex would break on nested divs, so we target the nav tag that follows)
     html = html.replace(
         /<div id="loading"[^>]*>[\s\S]*?<nav/,
@@ -79,47 +79,47 @@ function injectSEO(html, seo) {
 
 function homePage() {
     return {
-        title: 'Activamente · Salud mental y bienestar · Psicólogos en México',
-        description: 'Activamente es un espacio de excelencia clínica y calidez humana para la salud mental en México. Conectamos con psicólogos especializados en ansiedad, estrés, depresión, terapia de pareja y más. Terapia online y presencial.',
+        title: 'Activamente Â· Salud mental y bienestar Â· PsicÃ³logos en MÃ©xico',
+        description: 'Activamente es un espacio de excelencia clÃ­nica y calidez humana para la salud mental en MÃ©xico. Conectamos con psicÃ³logos especializados en ansiedad, estrÃ©s, depresiÃ³n, terapia de pareja y mÃ¡s. Terapia online y presencial.',
         canonical: SITE_URL + '/',
         content: `
 <section style="padding: 4rem 2rem; max-width: 960px; margin: 0 auto; font-family: 'Inter', sans-serif; line-height: 1.8;">
-    <h1 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 2.5rem; margin-bottom: 0.5rem;">Activamente · Salud Mental y Bienestar</h1>
-    <p style="font-size: 1.3rem; color: #c29a5b; font-weight: 600; margin-bottom: 1.5rem;">Expertos comprometidos con tu bienestar emocional en México</p>
-    <p style="font-size: 1.1rem; color: #333; margin-bottom: 1.5rem;">En Activamente creamos un espacio de excelencia clínica y calidez humana donde psicólogos especializados te acompañan en tu camino hacia el equilibrio emocional. Ofrecemos terapia para ansiedad, manejo del estrés, depresión, relaciones de pareja, duelo, autoestima y más, tanto en modalidad online como presencial en México.</p>
-    <p style="font-size: 1.1rem; color: #333; margin-bottom: 2rem;">Nuestro equipo de terapeutas certificados combina experiencia clínica con un trato cercano y personalizado, adaptando cada proceso terapéutico a tus necesidades específicas. Creemos que la salud mental es el cimiento de una vida plena y trabajamos para hacerla accesible a todos.</p>
+    <h1 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 2.5rem; margin-bottom: 0.5rem;">Activamente Â· Salud Mental y Bienestar</h1>
+    <p style="font-size: 1.3rem; color: #c29a5b; font-weight: 600; margin-bottom: 1.5rem;">Expertos comprometidos con tu bienestar emocional en MÃ©xico</p>
+    <p style="font-size: 1.1rem; color: #333; margin-bottom: 1.5rem;">En Activamente creamos un espacio de excelencia clÃ­nica y calidez humana donde psicÃ³logos especializados te acompaÃ±an en tu camino hacia el equilibrio emocional. Ofrecemos terapia para ansiedad, manejo del estrÃ©s, depresiÃ³n, relaciones de pareja, duelo, autoestima y mÃ¡s, tanto en modalidad online como presencial en MÃ©xico.</p>
+    <p style="font-size: 1.1rem; color: #333; margin-bottom: 2rem;">Nuestro equipo de terapeutas certificados combina experiencia clÃ­nica con un trato cercano y personalizado, adaptando cada proceso terapÃ©utico a tus necesidades especÃ­ficas. Creemos que la salud mental es el cimiento de una vida plena y trabajamos para hacerla accesible a todos.</p>
 
-    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Áreas de atención</h2>
+    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Ãreas de atenciÃ³n</h2>
     <ul style="margin-bottom: 2rem; color: #333;">
         <li><strong>Ansiedad:</strong> Aprende a gestionar la ansiedad con herramientas basadas en terapia cognitivo-conductual y mindfulness.</li>
-        <li><strong>Estrés:</strong> Técnicas para reducir el estrés laboral, familiar y personal con acompañamiento profesional.</li>
-        <li><strong>Depresión:</strong> Apoyo profesional para superar la depresión y recuperar tu bienestar emocional.</li>
-        <li><strong>Relaciones de pareja:</strong> Terapia de pareja para fortalecer la comunicación y resolver conflictos.</li>
-        <li><strong>Duelo y pérdidas:</strong> Acompañamiento sensible en procesos de duelo y adaptación al cambio.</li>
-        <li><strong>Autoestima:</strong> Trabaja en tu autoconcepto y desarrolla una relación más saludable contigo mismo.</li>
-        <li><strong>Adolescentes:</strong> Terapia especializada para jóvenes que enfrentan los desafíos de la adolescencia.</li>
-        <li><strong>Trauma:</strong> Procesamiento y sanación de experiencias traumáticas con profesionales capacitados.</li>
+        <li><strong>EstrÃ©s:</strong> TÃ©cnicas para reducir el estrÃ©s laboral, familiar y personal con acompaÃ±amiento profesional.</li>
+        <li><strong>DepresiÃ³n:</strong> Apoyo profesional para superar la depresiÃ³n y recuperar tu bienestar emocional.</li>
+        <li><strong>Relaciones de pareja:</strong> Terapia de pareja para fortalecer la comunicaciÃ³n y resolver conflictos.</li>
+        <li><strong>Duelo y pÃ©rdidas:</strong> AcompaÃ±amiento sensible en procesos de duelo y adaptaciÃ³n al cambio.</li>
+        <li><strong>Autoestima:</strong> Trabaja en tu autoconcepto y desarrolla una relaciÃ³n mÃ¡s saludable contigo mismo.</li>
+        <li><strong>Adolescentes:</strong> Terapia especializada para jÃ³venes que enfrentan los desafÃ­os de la adolescencia.</li>
+        <li><strong>Trauma:</strong> Procesamiento y sanaciÃ³n de experiencias traumÃ¡ticas con profesionales capacitados.</li>
     </ul>
 
     <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Modalidades de terapia</h2>
-    <p style="font-size: 1.1rem; color: #333; margin-bottom: 1rem;">Ofrecemos terapia online y presencial, adaptándonos a tu estilo de vida y necesidades. La terapia online te permite acceder a atención profesional desde la comodidad de tu hogar, mientras que la modalidad presencial está disponible en nuestras ubicaciones en México.</p>
+    <p style="font-size: 1.1rem; color: #333; margin-bottom: 1rem;">Ofrecemos terapia online y presencial, adaptÃ¡ndonos a tu estilo de vida y necesidades. La terapia online te permite acceder a atenciÃ³n profesional desde la comodidad de tu hogar, mientras que la modalidad presencial estÃ¡ disponible en nuestras ubicaciones en MÃ©xico.</p>
 
-    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Nuestros psicólogos</h2>
-    <p style="font-size: 1.1rem; color: #333; margin-bottom: 1rem;">Contamos con un equipo de psicólogos y terapeutas certificados con experiencia en diversas corrientes terapéuticas: terapia cognitivo-conductual, terapia humanista, terapia sistémica y más. Cada especialista es seleccionado por su excelencia clínica y su compromiso con el bienestar de sus pacientes.</p>
+    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Nuestros psicÃ³logos</h2>
+    <p style="font-size: 1.1rem; color: #333; margin-bottom: 1rem;">Contamos con un equipo de psicÃ³logos y terapeutas certificados con experiencia en diversas corrientes terapÃ©uticas: terapia cognitivo-conductual, terapia humanista, terapia sistÃ©mica y mÃ¡s. Cada especialista es seleccionado por su excelencia clÃ­nica y su compromiso con el bienestar de sus pacientes.</p>
 
     <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Foro comunitario "El Espacio"</h2>
     <p style="font-size: 1.1rem; color: #333; margin-bottom: 2rem;">Participa en nuestro foro comunitario donde pacientes y especialistas comparten experiencias, reflexiones y aprendizajes sobre salud mental en un ambiente respetuoso y de apoyo mutuo.</p>
 
     <div style="margin: 2.5rem 0; display: flex; gap: 1.5rem; flex-wrap: wrap;">
         <a href="/especialistas" style="display: inline-block; padding: 1rem 2.5rem; background: #5d1021; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem;">Encuentra tu especialista</a>
-        <a href="/nosotros" style="display: inline-block; padding: 1rem 2.5rem; border: 2px solid #c29a5b; color: #5d1021; text-decoration: none; border-radius: 50px; font-weight: 600;">Conoce más sobre nosotros</a>
-        <a href="/contacto" style="display: inline-block; padding: 1rem 2.5rem; border: 2px solid #5d1021; color: #5d1021; text-decoration: none; border-radius: 50px; font-weight: 600;">Contáctanos</a>
+        <a href="/nosotros" style="display: inline-block; padding: 1rem 2.5rem; border: 2px solid #c29a5b; color: #5d1021; text-decoration: none; border-radius: 50px; font-weight: 600;">Conoce mÃ¡s sobre nosotros</a>
+        <a href="/contacto" style="display: inline-block; padding: 1rem 2.5rem; border: 2px solid #5d1021; color: #5d1021; text-decoration: none; border-radius: 50px; font-weight: 600;">ContÃ¡ctanos</a>
     </div>
 
     <div style="margin-top: 3rem; padding: 2rem; background: #fdfbf7; border-radius: 16px; border: 1px solid #e0d5c7;">
-        <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.3rem; margin-bottom: 1rem;">¿Eres psicólogo?</h2>
-        <p style="font-size: 1.1rem; color: #333;">Si eres profesional de la salud mental y compartes nuestro compromiso con la excelencia clínica y el trato humano, te invitamos a formar parte de nuestro equipo de especialistas.</p>
-        <p style="margin-top: 1rem;"><a href="/registro" style="color: #5d1021; font-weight: 600;">Regístrate como especialista &rarr;</a></p>
+        <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.3rem; margin-bottom: 1rem;">Â¿Eres psicÃ³logo?</h2>
+        <p style="font-size: 1.1rem; color: #333;">Si eres profesional de la salud mental y compartes nuestro compromiso con la excelencia clÃ­nica y el trato humano, te invitamos a formar parte de nuestro equipo de especialistas.</p>
+        <p style="margin-top: 1rem;"><a href="/registro" style="color: #5d1021; font-weight: 600;">RegÃ­strate como especialista &rarr;</a></p>
     </div>
 </section>`
     };
@@ -127,100 +127,95 @@ function homePage() {
 
 function aboutPage() {
     return {
-        title: 'Nosotros · Activamente · Quiénes somos',
-        description: 'Conoce la historia, misión y valores de Activamente. Un ecosistema de salud mental en México con psicólogos certificados y atención personalizada.',
+        title: 'Nosotros Â· Activamente Â· QuiÃ©nes somos',
+        description: 'Conoce la historia, misiÃ³n y valores de Activamente. Un ecosistema de salud mental en MÃ©xico con psicÃ³logos certificados y atenciÃ³n personalizada.',
         canonical: SITE_URL + '/nosotros',
         content: `
 <section style="padding: 4rem 2rem; max-width: 800px; margin: 0 auto; font-family: 'Inter', sans-serif; line-height: 1.8;">
     <h1 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 2.2rem;">Nosotros &middot; Activamente</h1>
-    <p style="font-size: 1.1rem; color: #333; margin-top: 1.5rem;">En Activamente ofrecemos un espacio de excelencia clínica y calidez humana para la salud mental. Nuestra misión es empoderar a las personas para transformar su relación con sus pensamientos y emociones a través de terapia profesional y acompañamiento especializado.</p>
+    <p style="font-size: 1.1rem; color: #333; margin-top: 1.5rem;">En Activamente ofrecemos un espacio de excelencia clÃ­nica y calidez humana para la salud mental. Nuestra misiÃ³n es empoderar a las personas para transformar su relaciÃ³n con sus pensamientos y emociones a travÃ©s de terapia profesional y acompaÃ±amiento especializado.</p>
 
-    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Nuestra misión</h2>
-    <p style="font-size: 1.1rem; color: #333;">Hacer accesible la salud mental de calidad en México, conectando a pacientes con psicólogos certificados que ofrecen un trato humano, ético y profesional. Creemos que el bienestar emocional no debe ser un privilegio, sino un derecho al alcance de todos.</p>
+    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Nuestra misiÃ³n</h2>
+    <p style="font-size: 1.1rem; color: #333;">Hacer accesible la salud mental de calidad en MÃ©xico, conectando a pacientes con psicÃ³logos certificados que ofrecen un trato humano, Ã©tico y profesional. Creemos que el bienestar emocional no debe ser un privilegio, sino un derecho al alcance de todos.</p>
 
-    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Nuestra visión</h2>
-    <p style="font-size: 1.1rem; color: #333;">Ser la plataforma líder de salud mental en México, reconocida por la calidad de nuestros especialistas, la calidez de nuestro servicio y nuestro compromiso con la transformación positiva de las personas.</p>
+    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Nuestra visiÃ³n</h2>
+    <p style="font-size: 1.1rem; color: #333;">Ser la plataforma lÃ­der de salud mental en MÃ©xico, reconocida por la calidad de nuestros especialistas, la calidez de nuestro servicio y nuestro compromiso con la transformaciÃ³n positiva de las personas.</p>
 
     <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Nuestros valores</h2>
     <ul style="color: #333; margin-bottom: 1.5rem;">
-        <li><strong>Excelencia clínica:</strong> Todos nuestros psicólogos son profesionales certificados con formación continua.</li>
-        <li><strong>Calidez humana:</strong> Creemos en la terapia como un espacio seguro, libre de juicio y lleno de empatía.</li>
+        <li><strong>Excelencia clÃ­nica:</strong> Todos nuestros psicÃ³logos son profesionales certificados con formaciÃ³n continua.</li>
+        <li><strong>Calidez humana:</strong> Creemos en la terapia como un espacio seguro, libre de juicio y lleno de empatÃ­a.</li>
         <li><strong>Accesibilidad:</strong> Ofrecemos terapia online y presencial con precios justos y transparentes.</li>
         <li><strong>Confidencialidad:</strong> La privacidad de nuestros pacientes es sagrada. Todos los datos se manejan con estricta seguridad.</li>
-        <li><strong>Compromiso social:</strong> Trabajamos para reducir el estigma alrededor de la salud mental en México.</li>
+        <li><strong>Compromiso social:</strong> Trabajamos para reducir el estigma alrededor de la salud mental en MÃ©xico.</li>
     </ul>
 
     <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Nuestros especialistas</h2>
-    <p style="font-size: 1.1rem; color: #333;">Contamos con psicólogos especializados en diversas áreas: terapia cognitivo-conductual, terapia humanista, terapia sistémica, psicoanálisis y más. Cada profesional es seleccionado rigurosamente por su experiencia clínica, formación académica y compromiso con el paciente. Trabajamos con adolescentes, adultos, parejas y familias.</p>
+    <p style="font-size: 1.1rem; color: #333;">Contamos con psicÃ³logos especializados en diversas Ã¡reas: terapia cognitivo-conductual, terapia humanista, terapia sistÃ©mica, psicoanÃ¡lisis y mÃ¡s. Cada profesional es seleccionado rigurosamente por su experiencia clÃ­nica, formaciÃ³n acadÃ©mica y compromiso con el paciente. Trabajamos con adolescentes, adultos, parejas y familias.</p>
     <p style="margin-top: 1rem;"><a href="/especialistas" style="color: #5d1021; font-weight: 600;">Conoce a nuestro equipo de especialistas &rarr;</a></p>
 
-    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">¿Por qué elegir Activamente?</h2>
-    <p style="font-size: 1.1rem; color: #333;">Porque combinamos la excelencia clínica con un trato humano y cercano. No solo te conectamos con un psicólogo, te acompañamos en todo tu proceso de bienestar emocional. Cada terapeuta en nuestra plataforma comparte nuestro compromiso con la calidad, la ética y la transformación personal.</p>
+    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Â¿Por quÃ© elegir Activamente?</h2>
+    <p style="font-size: 1.1rem; color: #333;">Porque combinamos la excelencia clÃ­nica con un trato humano y cercano. No solo te conectamos con un psicÃ³logo, te acompaÃ±amos en todo tu proceso de bienestar emocional. Cada terapeuta en nuestra plataforma comparte nuestro compromiso con la calidad, la Ã©tica y la transformaciÃ³n personal.</p>
 </section>`
     };
 }
 
 function contactPage() {
     return {
-        title: 'Contacto · Activamente · Atención a pacientes',
-        description: 'Contacta con Activamente. Estamos aquí para ayudarte. Respondemos en menos de 24 horas hábiles. Terapia online y presencial en México.',
+        title: 'Contacto Â· Activamente Â· AtenciÃ³n a pacientes',
+        description: 'Contacta con Activamente. Estamos aquÃ­ para ayudarte. Respondemos en menos de 24 horas hÃ¡biles. Terapia online y presencial en MÃ©xico.',
         canonical: SITE_URL + '/contacto',
         content: `
 <section style="padding: 4rem 2rem; max-width: 800px; margin: 0 auto; font-family: 'Inter', sans-serif; line-height: 1.8;">
     <h1 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 2.2rem;">Contacto &middot; Activamente</h1>
-    <p style="font-size: 1.1rem; color: #333; margin-top: 1.5rem;">Estamos aquí para ayudarte a encontrar el apoyo que necesitas. Si tienes preguntas sobre nuestros servicios de terapia, deseas agendar una cita o necesitas más información sobre nuestros especialistas, no dudes en contactarnos.</p>
+    <p style="font-size: 1.1rem; color: #333; margin-top: 1.5rem;">Estamos aquÃ­ para ayudarte a encontrar el apoyo que necesitas. Si tienes preguntas sobre nuestros servicios de terapia, deseas agendar una cita o necesitas mÃ¡s informaciÃ³n sobre nuestros especialistas, no dudes en contactarnos.</p>
 
-    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Información de contacto</h2>
-    <p style="font-size: 1.1rem; color: #333; margin-bottom: 0.5rem;"><strong>Correo electrónico:</strong> <a href="mailto:activamentecorreo2026@gmail.com" style="color: #5d1021;">activamentecorreo2026@gmail.com</a></p>
-    <p style="font-size: 1.1rem; color: #333; margin-bottom: 0.5rem;"><strong>Teléfono:</strong> +52 55 8000 4851</p>
-    <p style="font-size: 1.1rem; color: #333; margin-bottom: 2rem;"><strong>Horario de atención:</strong> Lunes a viernes de 9:00 a 18:00 horas (horario CDMX)</p>
+    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">InformaciÃ³n de contacto</h2>
+    <p style="font-size: 1.1rem; color: #333; margin-bottom: 0.5rem;"><strong>Correo electrÃ³nico:</strong> <a href="mailto:activamentecorreo2026@gmail.com" style="color: #5d1021;">activamentecorreo2026@gmail.com</a></p>
+    <p style="font-size: 1.1rem; color: #333; margin-bottom: 0.5rem;"><strong>TelÃ©fono:</strong> +52 55 8000 4851</p>
+    <p style="font-size: 1.1rem; color: #333; margin-bottom: 2rem;"><strong>Horario de atenciÃ³n:</strong> Lunes a viernes de 9:00 a 18:00 horas (horario CDMX)</p>
 
-    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">¿Cómo funcionan nuestras terapias?</h2>
-    <p style="font-size: 1.1rem; color: #333;">Ofrecemos terapia psicológica online y presencial en México. El proceso es simple: elige al especialista que mejor se adapte a tus necesidades, agenda una cita y comienza tu camino hacia el bienestar emocional. Respondemos a todas las consultas en menos de 24 horas hábiles.</p>
+    <h2 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 1.5rem; margin: 2rem 0 1rem;">Â¿CÃ³mo funcionan nuestras terapias?</h2>
+    <p style="font-size: 1.1rem; color: #333;">Ofrecemos terapia psicolÃ³gica online y presencial en MÃ©xico. El proceso es simple: elige al especialista que mejor se adapte a tus necesidades, agenda una cita y comienza tu camino hacia el bienestar emocional. Respondemos a todas las consultas en menos de 24 horas hÃ¡biles.</p>
 
     <ul style="color: #333; margin-bottom: 2rem;">
         <li><strong>Terapia online:</strong> Sesiones por videollamada desde la comodidad de tu hogar.</li>
-        <li><strong>Terapia presencial:</strong> Atención en nuestras ubicaciones en México.</li>
-        <li><strong>Primera sesión:</strong> Conoce a tu terapeuta y define tus objetivos terapéuticos.</li>
+        <li><strong>Terapia presencial:</strong> AtenciÃ³n en nuestras ubicaciones en MÃ©xico.</li>
+        <li><strong>Primera sesiÃ³n:</strong> Conoce a tu terapeuta y define tus objetivos terapÃ©uticos.</li>
     </ul>
 
     <div style="margin-top: 2rem;">
         <a href="/especialistas" style="display: inline-block; padding: 1rem 2.5rem; background: #5d1021; color: white; text-decoration: none; border-radius: 50px; font-weight: 600;">Ver especialistas disponibles</a>
     </div>
 
-    <p style="font-size: 1.1rem; color: #333; margin-top: 2rem;">Si eres psicólogo y estás interesado en formar parte de nuestro equipo, escríbenos a <a href="mailto:activamentecorreo2026@gmail.com" style="color: #5d1021;">activamentecorreo2026@gmail.com</a> con tu currículum y datos profesionales.</p>
+    <p style="font-size: 1.1rem; color: #333; margin-top: 2rem;">Si eres psicÃ³logo y estÃ¡s interesado en formar parte de nuestro equipo, escrÃ­benos a <a href="mailto:activamentecorreo2026@gmail.com" style="color: #5d1021;">activamentecorreo2026@gmail.com</a> con tu currÃ­culum y datos profesionales.</p>
 </section>`
     };
 }
 
 function loginPage() {
     return {
-        title: 'Iniciar Sesión · Activamente · Portal de pacientes y especialistas',
+        title: 'Iniciar SesiÃ³n Â· Activamente Â· Portal de pacientes y especialistas',
         description: 'Accede a tu cuenta en Activamente para gestionar citas, ver tu historial y acceder a recursos exclusivos de salud mental.',
         canonical: SITE_URL + '/iniciar-sesion',
         content: `
 <section style="padding: 4rem 2rem; max-width: 500px; margin: 0 auto; font-family: 'Inter', sans-serif; text-align: center;">
     <h1 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 2rem;">Iniciar Sesi&oacute;n</h1>
-    <p style="color: #666; margin-top: 1rem;">Accede a tu cuenta en Activamente para gestionar tus citas, agendar sesiones con tu psicólogo y acceder a recursos exclusivos de bienestar mental.</p>
-    <p style="color: #666; margin-top: 1rem;">¿A&uacute;n no tienes cuenta? <a href="/registro" style="color: #5d1021; font-weight: 600;">Reg&iacute;strate aqu&iacute;</a></p>
+    <p style="color: #666; margin-top: 1rem;">Accede a tu cuenta en Activamente para gestionar tus citas, agendar sesiones con tu psicÃ³logo y acceder a recursos exclusivos de bienestar mental.</p>
+    <p style="color: #666; margin-top: 1rem;">Â¿A&uacute;n no tienes cuenta? <a href="/registro" style="color: #5d1021; font-weight: 600;">Reg&iacute;strate aqu&iacute;</a></p>
 </section>`
     };
 }
 
 function registerPage() {
     return {
-        title: 'Registro · Activamente · Crea tu cuenta',
-        description: 'Regístrate en Activamente como paciente o especialista. Accede a terapia online y presencial con psicólogos certificados en México.',
+        title: 'Registro Â· Activamente Â· Crea tu cuenta',
+        description: 'RegÃ­strate en Activamente como paciente o especialista. Accede a terapia online y presencial con psicÃ³logos certificados en MÃ©xico.',
         canonical: SITE_URL + '/registro',
         content: `
 <section style="padding: 4rem 2rem; max-width: 500px; margin: 0 auto; font-family: 'Inter', sans-serif; text-align: center;">
     <h1 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 2rem;">Crear Cuenta &middot; Activamente</h1>
     <p style="color: #666; margin-top: 1rem;">Reg&iacute;strate como paciente para agendar citas con nuestros psic&oacute;logos especializados, o como especialista para formar parte de nuestra red de profesionales de la salud mental en M&eacute;xico.</p>
-</section>`
-    };
-}
-    <h1 style="font-family: 'Playfair Display', serif; color: #5d1021; font-size: 2rem;">Crear Cuenta &middot; Activamente</h1>
-    <p style="color: #666; margin-top: 1rem;">Reg&iacute;strate como paciente o especialista y forma parte de nuestra comunidad.</p>
 </section>`
     };
 }
@@ -240,7 +235,7 @@ async function psychologistsPage() {
             <div>
                 <h2 style="color: #5d1021; margin: 0 0 0.3rem;">${escapeHtml(p.name)}</h2>
                 <p style="color: #c29a5b; font-weight: 600; margin: 0 0 0.5rem;">${escapeHtml(p.specialty || '')}</p>
-                <p style="color: #666; line-height: 1.6;">${escapeHtml((p.bio || '').substring(0, 200))}…</p>
+                <p style="color: #666; line-height: 1.6;">${escapeHtml((p.bio || '').substring(0, 200))}â€¦</p>
                 <p>${starsHtml(p.rating)} ${p.rating || '5.0'} &middot; ${p.reviews_count || 0} testimonios &middot; $${p.price || '--'} MXN/sesi&oacute;n</p>
                 <a href="/especialista/${p.user_id}" style="color: #5d1021; font-weight: 600;">Ver perfil completo &rarr;</a>
             </div>
@@ -250,8 +245,8 @@ async function psychologistsPage() {
             cards = '<p style="color:#666;">No hay especialistas registrados actualmente.</p>';
         }
         return {
-            title: 'Especialistas · Activamente',
-            description: 'Conoce a nuestro equipo de psicólogos especializados en salud mental. Terapia online y presencial en México.',
+            title: 'Especialistas Â· Activamente',
+            description: 'Conoce a nuestro equipo de psicÃ³logos especializados en salud mental. Terapia online y presencial en MÃ©xico.',
             canonical: SITE_URL + '/especialistas',
             content: `
 <section style="padding: 6rem 2rem 4rem; max-width: 900px; margin: 0 auto; font-family: 'Inter', sans-serif;">
@@ -274,8 +269,8 @@ async function psychologistProfilePage(id) {
         );
         if (result.rows.length === 0) {
             return {
-                title: 'Especialista no encontrado · Activamente',
-                description: 'El perfil del especialista no está disponible.',
+                title: 'Especialista no encontrado Â· Activamente',
+                description: 'El perfil del especialista no estÃ¡ disponible.',
                 canonical: SITE_URL + '/',
                 content: '<p>Especialista no encontrado.</p>'
             };
@@ -294,7 +289,7 @@ async function psychologistProfilePage(id) {
             ? blogPosts.map(b => `
     <div style="padding: 1rem; margin-bottom: 1rem; border-left: 3px solid #c29a5b; background: #fdfbf7; border-radius: 4px;">
         <h3 style="color: #5d1021; margin: 0 0 0.5rem;">${escapeHtml(b.title || '')}</h3>
-        <p style="color: #666; line-height: 1.6;">${escapeHtml((b.content || '').substring(0, 200))}…</p>
+        <p style="color: #666; line-height: 1.6;">${escapeHtml((b.content || '').substring(0, 200))}â€¦</p>
     </div>`).join('')
             : '<p style="color:#666;">No hay publicaciones a&uacute;n.</p>';
 
@@ -308,7 +303,7 @@ async function psychologistProfilePage(id) {
             : '<p style="color:#666;">No hay testimonios a&uacute;n.</p>';
 
         return {
-            title: `${p.name} · ${p.specialty || 'Especialista'} · Activamente`,
+            title: `${p.name} Â· ${p.specialty || 'Especialista'} Â· Activamente`,
             description: (p.bio || '').substring(0, 160),
             canonical: `${SITE_URL}/especialista/${p.user_id}`,
             content: `
@@ -317,10 +312,10 @@ async function psychologistProfilePage(id) {
         <img src="${escapeHtml(p.image || '')}" alt="${escapeHtml(p.name)}" style="width: 180px; height: 180px; border-radius: 20px; object-fit: cover;">
         <div>
             <h1 style="font-family: 'Playfair Display', serif; color: #5d1021; margin: 0 0 0.5rem; font-size: 2rem;">${escapeHtml(p.name)}</h1>
-            <p style="color: #c29a5b; font-size: 1.2rem; font-weight: 600; margin: 0 0 1rem;">${escapeHtml(p.specialty || 'Psicólogo')}</p>
+            <p style="color: #c29a5b; font-size: 1.2rem; font-weight: 600; margin: 0 0 1rem;">${escapeHtml(p.specialty || 'PsicÃ³logo')}</p>
             <p style="font-size: 1.3rem;">${starsHtml(p.rating)} ${p.rating || '5.0'}</p>
             <p style="color: #333; font-size: 1.1rem;"><strong>$${p.price || '--'} MXN</strong> / sesi&oacute;n &middot; ${p.reviews_count || 0} testimonios</p>
-            <p style="color: #666;">Modalidad: ${p.modality === 'online' ? 'Online' : p.modality === 'presencial' ? 'Presencial' : 'Online y Presencial'} &middot; ${escapeHtml(p.languages || 'Español')}</p>
+            <p style="color: #666;">Modalidad: ${p.modality === 'online' ? 'Online' : p.modality === 'presencial' ? 'Presencial' : 'Online y Presencial'} &middot; ${escapeHtml(p.languages || 'EspaÃ±ol')}</p>
         </div>
     </div>
     <h2 style="color: #5d1021; border-bottom: 2px solid #c29a5b; padding-bottom: 0.5rem;">Sobre ${escapeHtml(p.name)}</h2>
@@ -350,14 +345,14 @@ async function forumPage() {
             postsHtml = posts.map(p => `
     <div style="padding: 1.2rem; margin-bottom: 1rem; border: 1px solid #e0d5c7; border-radius: 8px; background: #fdfbf7;">
         <h3 style="color: #5d1021; margin: 0 0 0.5rem;">${escapeHtml(p.title || '')}</h3>
-        <p style="color: #666; line-height: 1.6;">${escapeHtml((p.content || '').substring(0, 250))}…</p>
-        <small style="color: #999;">${escapeHtml(p.author_email || 'Anónimo')}</small>
+        <p style="color: #666; line-height: 1.6;">${escapeHtml((p.content || '').substring(0, 250))}â€¦</p>
+        <small style="color: #999;">${escapeHtml(p.author_email || 'AnÃ³nimo')}</small>
     </div>`).join('');
         } else {
             postsHtml = '<p style="color:#666;">No hay publicaciones en el foro a&uacute;n.</p>';
         }
         return {
-            title: 'El Espacio · Foro Activamente',
+            title: 'El Espacio Â· Foro Activamente',
             description: 'Participa en el foro comunitario de Activamente. Comparte experiencias y encuentra apoyo.',
             canonical: SITE_URL + '/foro',
             content: `
@@ -400,7 +395,7 @@ module.exports = async (req, res) => {
             if (profileMatch) {
                 page = await psychologistProfilePage(parseInt(profileMatch[1], 10));
             } else {
-                // Unknown route — return SPA shell as-is
+                // Unknown route â€” return SPA shell as-is
                 res.setHeader('Content-Type', 'text/html; charset=utf-8');
                 res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=600');
                 return res.status(200).end(html);
