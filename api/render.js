@@ -325,6 +325,13 @@ module.exports = async (req, res) => {
         const urlPath = req.url.split('?')[0];
         const PROFILE_PATH_RE = /^\/especialista\/(\d+)$/;
 
+        // Serve robots.txt directly (before route matching)
+        if (urlPath === '/robots.txt') {
+            res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+            res.setHeader('Cache-Control', 'public, max-age=3600');
+            return res.status(200).end('User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ' + SITE_URL + '/sitemap.xml\n');
+        }
+
         let page;
         if (urlPath === '/' || urlPath === '') {
             page = homePage();
