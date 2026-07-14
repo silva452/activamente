@@ -36,10 +36,11 @@ function loadTemplate() {
 function injectSEO(html, seo) {
     const { title, description, canonical } = seo;
 
-    // Strip the loading screen ENTIRELY (Google sees it even if CSS-hidden)
+    // Strip the loading screen ENTIRELY — remove everything from <div id="loading"> to the <nav> tag
+    // (simple regex would break on nested divs, so we target the nav tag that follows)
     html = html.replace(
-        /<div id="loading"[^>]*>[\s\S]*?<\/div>\s*\n*/,
-        ''
+        /<div id="loading"[^>]*>[\s\S]*?<nav/,
+        '<nav'
     );
 
     // Replace <title>
