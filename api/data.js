@@ -13,6 +13,17 @@ module.exports = async (req, res) => {
     const send = (data, status = 200) => res.status(status).json(data);
 
     // ===================== PSYCHOLOGISTS =====================
+    if (action === 'get_psychologist') {
+      const id = parseInt(req.query.id) || 0;
+      if (id < 1) return send({ error: 'ID de especialista requerido' }, 400);
+      const result = await query(
+        `SELECT p.*, u.email FROM psychologists p JOIN users u ON p.user_id = u.id WHERE p.user_id = $1 AND p.is_active = true`,
+        [id]
+      );
+      if (result.rows.length === 0) return send({ error: 'Especialista no encontrado' }, 404);
+      return send(result.rows[0]);
+    }
+
     if (action === 'get_psychologists') {
       const search = req.query.search || '';
       const modality = req.query.modality || '';

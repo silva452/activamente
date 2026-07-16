@@ -382,6 +382,7 @@ const UI = {
         if (!Array.isArray(all)) return this.renderHome();
         const p = all.find(x => x.user_id == id);
         if (!p) return this.renderHome();
+        window.__seoProfileData = p; // Stash for SEO meta updates
 
         // Fetch Blog and Testimonials
         const [blogRes, testRes] = await Promise.all([
@@ -1827,6 +1828,20 @@ window.Router = {
                 else if (v === 'about')             UI.renderAbout();
                 else if (v === 'contact')           UI.renderContact();
                 else                                await UI.renderHome();
+
+                // URL-based routing + SEO meta updates
+                const urlMap = {
+                    'home': '/',
+                    'about': '/nosotros',
+                    'contact': '/contacto',
+                    'forum': '/foro',
+                    'login': '/iniciar-sesion',
+                    'register': '/registro',
+                };
+                const url = urlMap[v] || (v === 'profile' && id ? `/especialista/${id}` : '/');
+                window.history.pushState({ view: v, id: id }, '', url);
+                this.updateSEO(v, id);
+
             } catch (e) {
                 console.error('Navigation failed:', e);
                 root.innerHTML = `
@@ -1863,6 +1878,105 @@ window.Router = {
         const text = encodeURIComponent(eventTitle || 'Cita Activamente');
         const details = encodeURIComponent(`Modalidad: ${appt.modality || 'online'}`);
         return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${fmt(start)}/${fmt(end)}&details=${details}`;
+    },
+
+    // ====== SEO: Dynamic meta tag updater ======
+    updateSEO(view, id) {
+        const p = window.__seoProfileData || {};
+        const defaults = {
+            home: {
+                title: 'Activamente · Salud mental y bienestar',
+                desc: 'Un espacio de excelencia clínica y calidez humana. Expertos comprometidos con tu bienestar mental en México.',
+                url: 'https://activamente.vercel.app/',
+                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            },
+            about: {
+                title: 'Nosotros · Activamente',
+                desc: 'Conoce la historia, misión y valores de Activamente. Un ecosistema de salud mental en México.',
+                url: 'https://activamente.vercel.app/nosotros',
+                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            },
+            contact: {
+                title: 'Contacto · Activamente',
+                desc: 'Contacta con Activamente. Estamos aquí para ayudarte. Respondemos en menos de 24 horas hábiles.',
+                url: 'https://activamente.vercel.app/contacto',
+                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            },
+            forum: {
+                title: 'El Espacio · Foro Activamente',
+                desc: 'Participa en el foro comunitario de Activamente. Comparte experiencias y encuentra apoyo.',
+                url: 'https://activamente.vercel.app/foro',
+                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            },
+            login: {
+                title: 'Iniciar Sesión · Activamente',
+                desc: 'Accede a tu cuenta en Activamente para gestionar citas y acceder a recursos.',
+                url: 'https://activamente.vercel.app/iniciar-sesion',
+                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            },
+            register: {
+                title: 'Registro · Activamente',
+                desc: 'Regístrate en Activamente como paciente o especialista y forma parte de nuestra comunidad.',
+                url: 'https://activamente.vercel.app/registro',
+                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            },
+            dashboard: {
+                title: 'Panel Especialista · Activamente',
+                desc: 'Gestiona tu perfil, citas y pacientes en Activamente.',
+                url: 'https://activamente.vercel.app/panel',
+                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            },
+            'patient-dashboard': {
+                title: 'Mi Portal · Activamente',
+                desc: 'Gestiona tus citas y accede a recursos de salud mental en Activamente.',
+                url: 'https://activamente.vercel.app/mi-portal',
+                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            }
+        };
+
+        let seo;
+        if (view === 'profile') {
+            seo = {
+                title: p.name ? `${p.name} · ${p.specialty || 'Especialista'} · Activamente` : 'Especialista · Activamente',
+                desc: p.bio ? p.bio.substring(0, 160) : 'Perfil de especialista en Activamente. Conoce su formación y agenda una cita.',
+                url: id ? `https://activamente.vercel.app/especialista/${id}` : 'https://activamente.vercel.app/especialistas',
+                img: p.image || 'https://activamente.vercel.app/assets/logo_lux.jfif'
+            };
+        } else {
+            seo = defaults[view] || defaults.home;
+        }
+
+        document.title = seo.title;
+
+        const setMeta = (attr, name, content) => {
+            let el = document.querySelector(`meta[${attr}="${name}"]`);
+            if (!el) {
+                el = document.createElement('meta');
+                el.setAttribute(attr, name);
+                document.head.appendChild(el);
+            }
+            el.setAttribute('content', content || '');
+        };
+
+        const setLink = (rel, href) => {
+            let el = document.querySelector(`link[rel="${rel}"]`);
+            if (!el) {
+                el = document.createElement('link');
+                el.setAttribute('rel', rel);
+                document.head.appendChild(el);
+            }
+            el.setAttribute('href', href || '');
+        };
+
+        setMeta('name', 'description', seo.desc);
+        setMeta('property', 'og:title', seo.title);
+        setMeta('property', 'og:description', seo.desc);
+        setMeta('property', 'og:url', seo.url);
+        setMeta('property', 'og:image', seo.img);
+        setMeta('name', 'twitter:title', seo.title);
+        setMeta('name', 'twitter:description', seo.desc);
+        setMeta('name', 'twitter:image', seo.img);
+        setLink('canonical', seo.url);
     },
 
     handleSearch() {
@@ -2307,8 +2421,47 @@ async function init() {
             }
         }
 
-        await UI.renderHome();
+        // ---- SEO URL Routing: Initial path detection ----
+        const initialPath = window.location.pathname;
+        const initialProfileMatch = initialPath.match(/^\/especialista\/(\d+)$/);
+        const routeMap = {
+            '/nosotros': 'about',
+            '/contacto': 'contact',
+            '/foro': 'forum',
+            '/especialistas': 'home',
+            '/iniciar-sesion': 'login',
+            '/registro': 'register',
+            '/login': 'login',
+            '/register': 'register',
+            '/blog': 'home',
+        };
+
+        if (initialProfileMatch) {
+            window.Router.navigateTo('profile', parseInt(initialProfileMatch[1], 10));
+        } else if (initialPath === '/' || initialPath === '') {
+            await UI.renderHome();
+        } else {
+            const target = routeMap[initialPath];
+            if (target && target !== 'home') {
+                window.Router.navigateTo(target);
+            } else {
+                await UI.renderHome();
+            }
+        }
         UI.startFloatingTestimonials();
+
+        // ---- Handle browser back/forward ----
+        window.addEventListener('popstate', (event) => {
+            const path = window.location.pathname;
+            const profileMatch = path.match(/^\/especialista\/(\d+)$/);
+            if (profileMatch) {
+                window.Router.navigateTo('profile', parseInt(profileMatch[1], 10));
+            } else if (routeMap[path] && routeMap[path] !== 'home') {
+                window.Router.navigateTo(routeMap[path]);
+            } else {
+                window.Router.navigateTo('home');
+            }
+        });
     } catch (e) {
         console.error("Initialization failed:", e);
         appRoot.innerHTML = `

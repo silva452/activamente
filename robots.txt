@@ -1,0 +1,6 @@
+# Activamente - robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://activamente.vercel.app/sitemap.xml
