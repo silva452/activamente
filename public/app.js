@@ -2353,6 +2353,28 @@ async function init() {
         return;
     }
 
+    // ---- SEO CRITICAL: Preserve SSR content for Googlebot ----
+    // If Googlebot renders with JS and our SPA replaces SSR content,
+    // any API failure or timeout would show an error page → Soft 404.
+    // Detect SSR content and bail out early, leaving HTML untouched.
+    const initialPath = window.location.pathname;
+    const hasSsrContent = appRoot.children.length > 0 && appRoot.textContent.trim().length > 100;
+    const isPublicPage = ['/', '/nosotros', '/contacto', '/foro', '/especialistas', '/iniciar-sesion', '/registro', '/login', '/register'].includes(initialPath);
+
+    if (isPublicPage && hasSsrContent) {
+        console.log('SSR content detected — deferring to server-rendered HTML');
+        try {
+            const res = await apiFetch('/api/auth?action=status');
+            if (res.ok) {
+                const data = await res.json();
+                window.__activamenteRole = data.logged_in ? (data.role || '') : null;
+            }
+        } catch (_) {}
+        UI.startFloatingTestimonials();
+        window.addEventListener('popstate', handlePopState);
+        return; // ← EARLY EXIT: preserve SSR content untouched
+    }
+
     try {
         const res = await apiFetch('/api/auth?action=status');
         let data = {};
@@ -2450,28 +2472,42 @@ async function init() {
         UI.startFloatingTestimonials();
 
         // ---- Handle browser back/forward ----
-        window.addEventListener('popstate', (event) => {
-            const path = window.location.pathname;
-            const profileMatch = path.match(/^\/especialista\/(\d+)$/);
-            if (profileMatch) {
-                window.Router.navigateTo('profile', parseInt(profileMatch[1], 10));
-            } else if (routeMap[path] && routeMap[path] !== 'home') {
-                window.Router.navigateTo(routeMap[path]);
-            } else {
-                window.Router.navigateTo('home');
-            }
-        });
+        window.addEventListener('popstate', handlePopState);
     } catch (e) {
         console.error("Initialization failed:", e);
-        appRoot.innerHTML = `
-            <div style="padding: clamp(4rem, 12vw, 10rem) 1.5rem; text-align: center; font-family: 'Inter', sans-serif; max-width: 36rem; margin: 0 auto;">
-                <h2 style="font-family:'Playfair Display',serif; color: var(--primary, #5d1021); margin-bottom: 1rem;">No pudimos iniciar Activamente</h2>
-                <p style="color: var(--text-muted, #71717a); line-height: 1.65; margin-bottom: 1.5rem;">Hubo un inconveniente al conectar con el servidor.</p>
-                <div style="padding: 1rem 1.25rem; background: #f4f4f5; border-radius: 12px; font-size: 0.85rem; color: #52525b; text-align: left;">
-                    ${escapeHtml(e.message || 'Error desconocido')}
-                </div>
-                <button type="button" onclick="location.reload()" class="btn-gold" style="margin-top: 2rem; padding: 1rem 2.5rem; border: none; cursor: pointer;">Intentar de nuevo</button>
-            </div>`;
+        // Only replace content if SSR didn't already provide it
+        if (!hasSsrContent) {
+            appRoot.innerHTML = `
+                <div style="padding: clamp(4rem, 12vw, 10rem) 1.5rem; text-align: center; font-family: 'Inter', sans-serif; max-width: 36rem; margin: 0 auto;">
+                    <h2 style="font-family:'Playfair Display',serif; color: var(--primary, #5d1021); margin-bottom: 1rem;">No pudimos iniciar Activamente</h2>
+                    <p style="color: var(--text-muted, #71717a); line-height: 1.65; margin-bottom: 1.5rem;">Hubo un inconveniente al conectar con el servidor.</p>
+                    <div style="padding: 1rem 1.25rem; background: #f4f4f5; border-radius: 12px; font-size: 0.85rem; color: #52525b; text-align: left;">
+                        ${escapeHtml(e.message || 'Error desconocido')}
+                    </div>
+                    <button type="button" onclick="location.reload()" class="btn-gold" style="margin-top: 2rem; padding: 1rem 2.5rem; border: none; cursor: pointer;">Intentar de nuevo</button>
+                </div>`;
+        }
+    }
+}
+
+function handlePopState() {
+    const path = window.location.pathname;
+    const profileMatch = path.match(/^\/especialista\/(\d+)$/);
+    const routeMap = {
+        '/nosotros': 'about',
+        '/contacto': 'contact',
+        '/foro': 'forum',
+        '/iniciar-sesion': 'login',
+        '/registro': 'register',
+        '/login': 'login',
+        '/register': 'register',
+    };
+    if (profileMatch) {
+        window.Router.navigateTo('profile', parseInt(profileMatch[1], 10));
+    } else if (routeMap[path] && routeMap[path] !== 'home') {
+        window.Router.navigateTo(routeMap[path]);
+    } else {
+        window.Router.navigateTo('home');
     }
 }
 
