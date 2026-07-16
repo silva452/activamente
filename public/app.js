@@ -2388,9 +2388,9 @@ async function init() {
                 const isPsychologist = role === 'psychologist';
                 const isSuperAdmin = role === 'superadmin';
                 const commonNav = `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('home');${close}">Inicio</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('about');${close}">Nosotros</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('contact');${close}">Contacto</a>`;
+                    <a href="/" onclick="Router.navigateTo('home');${close}">Inicio</a>
+                    <a href="/nosotros" onclick="Router.navigateTo('about');${close}">Nosotros</a>
+                    <a href="/contacto" onclick="Router.navigateTo('contact');${close}">Contacto</a>`;
                 if (isSuperAdmin) {
                     nav.innerHTML = commonNav + `
                     <a href="javascript:void(0)" onclick="Router.navigateTo('superadmin');${close}" style="color:var(--accent);font-weight:700;">Panel Superadmin</a>
@@ -2401,29 +2401,26 @@ async function init() {
                     <a href="javascript:void(0)" onclick="Router.handleLogout()">Salir</a>`;
                 } else if (isPsychologist) {
                     nav.innerHTML = commonNav + `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('forum');${close}">El Espacio</a>
+                    <a href="/foro" onclick="Router.navigateTo('forum');${close}">El Espacio</a>
                     <a href="javascript:void(0)" onclick="Router.navigateTo('dashboard');${close}" style="color:var(--accent);font-weight:700;">Panel especialista</a>
                     <a href="javascript:void(0)" onclick="Router.handleLogout()">Salir</a>`;
                 } else {
                     nav.innerHTML = commonNav + `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('home');${close}" style="color:var(--accent);font-weight:700;">Mi cuenta</a>
+                    <a href="/" onclick="Router.navigateTo('home');${close}" style="color:var(--accent);font-weight:700;">Mi cuenta</a>
                     <a href="javascript:void(0)" onclick="Router.handleLogout()">Salir</a>`;
                 }
-            } else {
-                nav.innerHTML = `
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('home');${close}">Inicio</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('forum');${close}">El Espacio</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('about');${close}">Nosotros</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('contact');${close}">Contacto</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('login');${close}">Ingresar</a>
-                    <a href="javascript:void(0)" onclick="Router.navigateTo('register');${close}" class="btn-gold btn-gold-nav">Unirme</a>
-                `;
             }
+            // Non-logged-in users: the SSR template already has good nav links with real hrefs.
+            // Don't replace them — Googlebot sees real links, not javascript:void(0).
         }
 
         // ---- SEO URL Routing: Initial path detection ----
+        // IMPORTANT: For public pages (/, /nosotros, /contacto, /foro, /especialistas),
+        // SSR already injected full content. We keep it to avoid Soft 404 on Google.
+        // Only replace content for dynamic/authenticated pages.
         const initialPath = window.location.pathname;
         const initialProfileMatch = initialPath.match(/^\/especialista\/(\d+)$/);
+        const SSR_PUBLIC_PAGES = ['/', '/nosotros', '/contacto', '/foro', '/especialistas', '/iniciar-sesion', '/registro'];
         const routeMap = {
             '/nosotros': 'about',
             '/contacto': 'contact',
@@ -2438,13 +2435,15 @@ async function init() {
 
         if (initialProfileMatch) {
             window.Router.navigateTo('profile', parseInt(initialProfileMatch[1], 10));
-        } else if (initialPath === '/' || initialPath === '') {
-            await UI.renderHome();
+        } else if (SSR_PUBLIC_PAGES.includes(initialPath)) {
+            // Content already SSR-injected — keep it. Just update dynamic parts.
+            console.log('SSR content preserved for', initialPath);
         } else {
             const target = routeMap[initialPath];
             if (target && target !== 'home') {
                 window.Router.navigateTo(target);
             } else {
+                // Unknown route — renderHome as fallback
                 await UI.renderHome();
             }
         }
