@@ -30,8 +30,8 @@
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
-
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/:file((?!api/).*\\.(?:css|js|png|jpe?g|gif|svg|ico|jfif|woff2?|ttf|eot))", "destination": "/:file" },
     { "source": "/", "destination": "/api/render" },
     { "source": "/(.*)", "destination": "/api/render" }
   ]
