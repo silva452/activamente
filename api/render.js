@@ -31,16 +31,10 @@ function loadTemplate() {
 
 /**
  * Injects SEO metadata + content into the SPA shell HTML template.
- * Strips the loading screen entirely so Googlebot never sees it.
+ * The template has no loading screen so Googlebot sees content immediately.
  */
 function injectSEO(html, seo) {
     const { title, description, canonical } = seo;
-
-    // Strip the loading screen entirely - target nav tag to avoid nested div issues
-    html = html.replace(
-        /<div id="loading"[^>]*>[\s\S]*?<nav/,
-        '<nav'
-    );
 
     // Replace <title>
     html = html.replace(/(<title>)[^<]*(<\/title>)/, '$1' + escapeHtml(title) + '$2');
