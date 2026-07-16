@@ -114,7 +114,7 @@ const UI = {
                         <p class="home-camino-text">Más que un equipo de profesionales, en Activamente somos personas comprometidas con tu bienestar bajo los más altos estándares. Entendemos que buscas algo más que una consulta: buscas un espacio cálido para transformar tu camino en una terapia con propósito.</p>
                     </div>
                     <div class="reveal home-camino-visual">
-                        <img src="assets/connection.png" alt="Conexión terapéutica" class="home-camino-img">
+                        <img src="connection.png" alt="Conexión terapéutica" class="home-camino-img">
                     </div>
                 </div>
             </section>
@@ -1888,49 +1888,49 @@ window.Router = {
                 title: 'Activamente · Salud mental y bienestar',
                 desc: 'Un espacio de excelencia clínica y calidez humana. Expertos comprometidos con tu bienestar mental en México.',
                 url: 'https://activamente.vercel.app/',
-                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: 'https://activamente.vercel.app/logo_lux.jfif'
             },
             about: {
                 title: 'Nosotros · Activamente',
                 desc: 'Conoce la historia, misión y valores de Activamente. Un ecosistema de salud mental en México.',
                 url: 'https://activamente.vercel.app/nosotros',
-                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: 'https://activamente.vercel.app/logo_lux.jfif'
             },
             contact: {
                 title: 'Contacto · Activamente',
                 desc: 'Contacta con Activamente. Estamos aquí para ayudarte. Respondemos en menos de 24 horas hábiles.',
                 url: 'https://activamente.vercel.app/contacto',
-                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: 'https://activamente.vercel.app/logo_lux.jfif'
             },
             forum: {
                 title: 'El Espacio · Foro Activamente',
                 desc: 'Participa en el foro comunitario de Activamente. Comparte experiencias y encuentra apoyo.',
                 url: 'https://activamente.vercel.app/foro',
-                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: 'https://activamente.vercel.app/logo_lux.jfif'
             },
             login: {
                 title: 'Iniciar Sesión · Activamente',
                 desc: 'Accede a tu cuenta en Activamente para gestionar citas y acceder a recursos.',
                 url: 'https://activamente.vercel.app/iniciar-sesion',
-                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: 'https://activamente.vercel.app/logo_lux.jfif'
             },
             register: {
                 title: 'Registro · Activamente',
                 desc: 'Regístrate en Activamente como paciente o especialista y forma parte de nuestra comunidad.',
                 url: 'https://activamente.vercel.app/registro',
-                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: 'https://activamente.vercel.app/logo_lux.jfif'
             },
             dashboard: {
                 title: 'Panel Especialista · Activamente',
                 desc: 'Gestiona tu perfil, citas y pacientes en Activamente.',
                 url: 'https://activamente.vercel.app/panel',
-                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: 'https://activamente.vercel.app/logo_lux.jfif'
             },
             'patient-dashboard': {
                 title: 'Mi Portal · Activamente',
                 desc: 'Gestiona tus citas y accede a recursos de salud mental en Activamente.',
                 url: 'https://activamente.vercel.app/mi-portal',
-                img: 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: 'https://activamente.vercel.app/logo_lux.jfif'
             }
         };
 
@@ -1940,7 +1940,7 @@ window.Router = {
                 title: p.name ? `${p.name} · ${p.specialty || 'Especialista'} · Activamente` : 'Especialista · Activamente',
                 desc: p.bio ? p.bio.substring(0, 160) : 'Perfil de especialista en Activamente. Conoce su formación y agenda una cita.',
                 url: id ? `https://activamente.vercel.app/especialista/${id}` : 'https://activamente.vercel.app/especialistas',
-                img: p.image || 'https://activamente.vercel.app/assets/logo_lux.jfif'
+                img: p.image || 'https://activamente.vercel.app/logo_lux.jfif'
             };
         } else {
             seo = defaults[view] || defaults.home;
